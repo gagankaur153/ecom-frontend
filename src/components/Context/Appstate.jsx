@@ -21,7 +21,7 @@ const Appstate = (props) => {
     const [loading , setloading] = useState(false)
    
     
-  const url = "https://ecom-backend-tdn9.onrender.com"
+  const url = "https://ecom-backend-payment-intigrate.onrender.com"
     
     // get all product
     const getallproduct = ()=>{
@@ -346,8 +346,17 @@ const deletecart = ()=>{
         getallproduct,
         fetchsingleproduct ,
         updateproduct,
-        deletecart
-        ,login, register,user_detail, profile, isauth,logout,addcart, addnewaddress, oldaddresss, role,
+        deletecart,
+        login,
+         register,
+         user_detail,
+          profile,
+           isauth,
+           logout,
+           addcart, 
+           addnewaddress,
+            oldaddresss,
+        role,
         oldaddress,
       fetchcarts,
       carts,
