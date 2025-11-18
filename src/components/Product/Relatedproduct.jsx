@@ -3,7 +3,7 @@ import Appcontext from '../Context/Appcontext'
 import { NavLink } from 'react-router';
 
 const Relatedproduct = ({category}) => {
-    const {products} = useContext(Appcontext)
+    const {products, addcart} = useContext(Appcontext)
     const [realtedprodcts,setrealtedproduct] = useState([])
     useEffect(()=>{
       setrealtedproduct(products?.filter((item)=> item?.category?.toLowerCase() == category?.toLowerCase()))
@@ -23,7 +23,7 @@ const Relatedproduct = ({category}) => {
                   <h5 className="card-title">{product.title}</h5>
                   <div className=' items-center justify-center gap-2 lg:flex p-2 '>
                   <button className="btn mb-2 lg:mb-0 btn-primary  px-1 bg-blue-600">Price: {product.price}</button>
-                  <button className="btn  btn-danger px-1  bg-yellow-600">Add to cart</button>
+                  <button  onClick={()=>addcart(product._id)} className="btn  btn-danger px-1  bg-yellow-600">Add to cart</button>
                   </div>
                 </div>
               </div>

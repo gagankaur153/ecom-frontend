@@ -48,6 +48,8 @@ const Appstate = (props) => {
       })
    }
 
+   
+
    // add product admin
    const addnewproduct = (title,price,category,description,file,setfile, setproductdetail,fileInputRef )=>{
     const formData = new FormData()

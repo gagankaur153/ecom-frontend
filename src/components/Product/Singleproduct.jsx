@@ -1,12 +1,13 @@
 import axios from 'axios'
 import React, { useContext, useEffect,useState } from 'react'
 import { useParams } from 'react-router'
+import {NavLink} from 'react-router-dom'
 import Appcontext from '../Context/Appcontext'
 import Relatedproduct from './Relatedproduct'
 
 const Singleproduct = () => {
     const {id} = useParams()
-    const {fetchsingleproduct } = useContext(Appcontext)
+    const {fetchsingleproduct,addcart } = useContext(Appcontext)
     const [product,setproduct ] = useState('')
 useEffect(()=>{
      fetchsingleproduct(id,setproduct)
@@ -24,8 +25,8 @@ useEffect(()=>{
             <p className='text-md'>{product.description}</p>
             <p className='text-3xl font-semibold text-center  w-full'>Rs: {product.price}</p>
             <div className=' flex items-center justify-center w-full gap-5 '>
-            <button className='bg-red-600 font-semibold text-lg text-white px-2 rounded'>Buy Now</button>
-            <button className='bg-yellow-400 font-semibold text-lg text-black px-2 rounded'>Add TO Cart</button>
+            <NavLink to={'/cart'} className='bg-red-600 font-semibold text-lg text-white px-2 rounded'>Buy Now</NavLink>
+            <button className='bg-yellow-400 font-semibold text-lg text-black px-2 rounded'  onClick={()=>addcart(product._id)}>Add TO Cart</button>
             </div>
     </div>
 </div>
