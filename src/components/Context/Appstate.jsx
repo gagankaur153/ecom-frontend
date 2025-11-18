@@ -355,7 +355,6 @@ const deletecart = ()=>{
       quantityDecrease,
       quantityIncrease,
       quantityRemove,
-      logout,
       addnewproduct,
       userorder,
       recentlyorder ,
