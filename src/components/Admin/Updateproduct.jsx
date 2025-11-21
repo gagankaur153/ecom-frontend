@@ -42,7 +42,7 @@ useEffect(()=>{
         e.preventDefault()
         setloading(true)
         setTimeout(() => {
-            updateproduct(id,productdetail?.title,productdetail?.price,productdetail?.description, productdetail?.category, file,setfile,setproductdetail,fileInputref)
+            updateproduct(id,productdetail?.title,productdetail?.price,productdetail?.category, productdetail?.description, file,setfile,setproductdetail,fileInputref)
             setloading(false)
         }, 1000);
      }

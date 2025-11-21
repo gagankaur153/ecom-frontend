@@ -75,7 +75,7 @@ const Navbar = () => {
       </div>
 
      <div className=' flex justify-between gap-3 items-center '>
-        <input type="text" placeholder='search product...' className='input input-bordered rounded-full w-full px-3 bg-black   placeholder:font-semibold font-semibold placeholder:text-white text-white' />
+        <input type="text" placeholder='search product...' className='input input-bordered rounded-full w-full px-3 bg-black   placeholder:font-semibold font-semibold placeholder:text-white text-white' value={search} onChange={(e)=>setsearch(e.target.value)} />
         {
             !isopen ?  <IoReorderThreeOutline size={40} className='text-white cursor-pointer' onClick={smallbuttons} /> :
             <RxCross2 size={40} className='text-white cursor-pointer' onClick={smallbuttons} />

@@ -21,7 +21,12 @@ const Appstate = (props) => {
     const [loading , setloading] = useState(false)
    
     
-  const url = "https://ecom-backend-payment-intigrate.onrender.com"
+  // const url = "https://ecom-backend-payment-intigrate.onrender.com"
+  // urls.js
+ const url = window.location.origin.includes("localhost")
+? "http://localhost:4000"  // local backend
+: "https://ecom-backend-payment-intigrate.onrender.com"; // deployed backend
+
     
     // get all product
     const getallproduct = ()=>{
@@ -33,6 +38,7 @@ const Appstate = (props) => {
             console.log(err)
         })
     }
+    
     useEffect(()=>{getallproduct()},[search])
     
 

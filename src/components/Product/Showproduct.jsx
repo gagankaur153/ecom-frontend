@@ -28,7 +28,7 @@ const Showproduct = () => {
        </div>
 
 
-       <div className=' bg-black'>
+       <div className=' h-screen bg-black'>
       <div className='d-flex items-center justify-center'>
       {
             products && <div className='text-white gap-2 md:gap-6  justify-items-center p-8 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 '>
