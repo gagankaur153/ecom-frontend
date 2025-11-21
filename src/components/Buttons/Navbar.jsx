@@ -65,7 +65,7 @@ const Navbar = () => {
 
   
   return (
-    <div className='max-w-8xl sticky top-0 z-50 mx-auto  '>
+    <div className='max-w-8xl w-full fixed top-0 z-50 mx-auto  '>
   {/* small device navbar */}
   <nav className='  md:hidden bg-purple-900 sticky top-0 p-3 w-full flex flex-col space-y-3  '>
 

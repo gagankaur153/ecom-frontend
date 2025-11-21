@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState,useEffect } from 'react'
 import Appcontext from '../Context/Appcontext'
 import { LuFilter } from "react-icons/lu";
 import { NavLink, useNavigate } from 'react-router';
@@ -10,25 +10,17 @@ const Showproduct = () => {
    const updateproduct = (id)=>{
          navigate(`/updateproduct/${id}`)
    }
+  const [value, setvalue] = useState(false)
+  const lufilter = ()=>{
+    setvalue(!value)
+  }
+  
   return (
    <>
-       <div className='sticky top-20 z-50'>
-       <div className= 'hidden border md:flex w-full justify-around bg-blue-800 t md:text-lg text-white font-semibold py-5 md:py-3'>
-        <p>No Filter</p>
-        <p>Mobiles</p>
-        <p>Laptops</p>
-        <p>Tablets</p>
-        <p>Camera's</p>
-        <p>Headphones</p>
-     </div>
-     <div className='md:hidden bg-black p-4 text-3xl text-white '>
-        <LuFilter />
-
-     </div>
-       </div>
+       
 
 
-       <div className=' h-screen bg-black'>
+       <div className=' h-screen mt-24 bg-black'>
       <div className='d-flex items-center justify-center'>
       {
             products && <div className='text-white gap-2 md:gap-6  justify-items-center p-8 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 '>
