@@ -22,7 +22,7 @@ const Allorders = () => {
     <div>
       {
         orders.length === 0 ? <h1>No orders</h1> : <>
-        <div className="flex justify-center">
+        <div className="flex mt-28 justify-center">
   <div className="w-[80%]">
     {orders.map((item, index) => (
       <div

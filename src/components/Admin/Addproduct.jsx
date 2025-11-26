@@ -36,8 +36,8 @@ const Addproduct = () => {
 
 
   return (
-    <div className=' flex justify-center max-w-8xl h-[90%]  '>
-     <div className='border  border-yellow-100 mx-auto w-[90%] sm:w-[90%] rounded-xl md:w-2/3 m-6 p-8  space-y-4'>
+    <div className=' flex justify-center mt-28 max-w-8xl h-[90%]  '>
+     <div className='border  border-yellow-100 mx-auto w-[90%] sm:w-[90%] rounded-xl md:w-2/3 m-6 p-9   space-y-4'>
           <div className=''>
             <h1 className='text-center text-2xl md:text-6xl font-semibold'>
                 Add Product

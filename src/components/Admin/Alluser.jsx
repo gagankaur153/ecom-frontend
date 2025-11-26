@@ -22,8 +22,8 @@ const Alluser = () => {
     <div className=''>
     {
    users.length == 0 ? <h1>No User register</h1> : 
-   <div className='flex justify-center mt-10'>
-     <table className='w-1/2 border  border-blue-600 p-4' >
+   <div className='flex justify-center  mt-28'>
+     <table className='w-full m-12 border  border-blue-600 p-4' >
              <thead className='border-b  border-blue-600'>
                 <tr className='font-semibold text-2xl' >
                     <th className='border-r border-blue-600 p-2'>Username</th>

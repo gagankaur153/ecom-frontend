@@ -39,7 +39,7 @@ const Cart = () => {
 
   return (
    <>
-     <div className='flex flex-col gap-4 p-4 m-4'>
+     <div className='flex flex-col gap-4 p-4 mt-20'>
      {
       carts?.item?.length === 0 ? <>
      <h1 className='text-center text-2xl md:text-6xl text-yellow-600 font-semibold mt-7'>Cart is empty...</h1></>  : 

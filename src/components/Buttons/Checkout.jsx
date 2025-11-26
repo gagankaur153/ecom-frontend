@@ -86,11 +86,11 @@ const handlepayment = ()=>{
 
     
   return (
-    <div className=' m-2  p-4'>
+    <div className=' m-2 mt-20 p-4'>
    <div className=' p-2'>
-    <div className='text-center font-bold text-xl md:text-4xl'>
+    {/* <div className='text-center font-bold text-xl md:text-4xl'>
         Order Summary
-    </div>
+    </div> */}
 
     {
         carts?.item.length == 0 ? 
@@ -101,6 +101,9 @@ const handlepayment = ()=>{
             )
         : (
             <div>
+               <div className='text-center font-bold text-xl md:text-4xl'>
+        Order Summary
+    </div>
                     <div className='grid mt-5 grid-cols-1 md:grid-cols-12 border border-blue-600'>
         <div className='col-span-8 border border-blue-600'>
             <div className='border border-blue-600 text-xl font-bold  text-center p-4 '>
