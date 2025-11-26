@@ -17,9 +17,6 @@ const Showproduct = () => {
   
   return (
    <>
-       
-
-
        <div className=' h-screen mt-24 bg-black'>
       <div className='d-flex items-center justify-center'>
       {
