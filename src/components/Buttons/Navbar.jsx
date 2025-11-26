@@ -87,7 +87,7 @@ const Navbar = () => {
             {
               role !== "admin"? <>
                {buttons.map((item, index)=> (
-             <NavLink key={index} className='bg-purple-700 m-2 text-center p-1 hover:bg-purple-600 font-semibold w-full text-white'  to={item.link} onClick={smallbuttons}>
+             <NavLink key={index} className='bg-purple-700 m-2 text-center p-1 hover:bg-purple-900 font-semibold w-full text-white'  to={item.link} onClick={smallbuttons}>
                  {item.button}
                  </NavLink>
                  ))}
@@ -103,7 +103,7 @@ const Navbar = () => {
 
                   {
                   isauth === "true" && (
-                    <button onClick={()=>logout()} className='bg-purple-700 m-2 text-center p-1 hover:bg-purple-600 font-semibold w-full text-white' >Logout</button>
+                    <button onClick={()=>logout()} className='bg-purple-700 m-2 text-center p-1 hover:bg-purple-900 font-semibold w-full text-white' >Logout</button>
                   )
                  }
             
@@ -124,14 +124,14 @@ const Navbar = () => {
           {
             role !== "admin" ? <>
                    {
-            buttons.map((item, index)=><div key={index} className='bg-blue-600 px-3 py-1 rounded lg:text-lg text-white font-semibold'>
+            buttons.map((item, index)=><div key={index} className='bg-blue-600 hover:bg-blue-800 px-3 py-1 rounded lg:text-lg text-white font-semibold'>
                 <NavLink to={item.link} >{ item.button}</NavLink>
 
             </div>)
             }
             </> : <>
             {
-          adminbuttons.map((item, index)=><div key={index} className='bg-blue-600 px-3 py-1 rounded lg:text-lg text-white font-semibold'>
+          adminbuttons.map((item, index)=><div key={index} className='bg-blue-600 hover:bg-blue-800 px-3 py-1 rounded lg:text-lg text-white font-semibold'>
                 <NavLink to={item.link} >{ item.button}</NavLink>
 
             </div>)
@@ -141,7 +141,7 @@ const Navbar = () => {
          
              {
               isauth === "true" && (
-                <button onClick={()=>logout()} className='bg-blue-600 px-3 py-1 rounded lg:text-lg text-white font-semibold'>Logout</button>
+                <button onClick={()=>logout()} className='bg-blue-600 hover:bg-blue-800 px-3 py-1 rounded lg:text-lg text-white font-semibold'>Logout</button>
               )
              }
     

@@ -14,9 +14,9 @@ useEffect(()=>{
 },[id])
   return (
 <>
-<div className='flex  justify-center items-center'>
+<div className='flex mt-20 justify-center items-center'>
 <div className="container flex justify-center m-8 ">
-    <div className='w-1/2  m-2 flex justify-center'>
+    <div className='w-1/2 flex justify-center'>
           <img className='w-[220px] h-[250px] rounded' src={product.image} alt="" />
     </div>
     <div className='w-1/2 m-2 flex flex-col justify-center items-start space-y-4'>
@@ -25,8 +25,8 @@ useEffect(()=>{
             <p className='text-md'>{product.description}</p>
             <p className='text-3xl font-semibold text-center  w-full'>Rs: {product.price}</p>
             <div className=' flex items-center justify-center w-full gap-5 '>
-            <NavLink to={'/cart'} className='bg-red-600 font-semibold text-lg text-white px-2 rounded'>Buy Now</NavLink>
-            <button className='bg-yellow-400 font-semibold text-lg text-black px-2 rounded'  onClick={()=>addcart(product._id)}>Add TO Cart</button>
+            <NavLink to={'/cart'} className='bg-red-600 hover:bg-red-800 font-semibold text-lg text-white p-2 rounded'>Buy Now</NavLink>
+            <button className='bg-yellow-500 hover:bg-yellow-700 font-semibold text-lg text-black p-2 rounded'  onClick={()=>addcart(product._id)}>Add TO Cart</button>
             </div>
     </div>
 </div>

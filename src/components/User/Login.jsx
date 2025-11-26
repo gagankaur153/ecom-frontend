@@ -29,7 +29,7 @@ const Login = () => {
   <input type="string" className="form-control py-2 text-black rounded-full px-2 focus:outline-none" name='password' value={data.password} onChange={inputhandle} placeholder="enter password"/>
 </div>
 <div className="mb- w-full flex container justify-center">
-  <button type='submit' className='btn btn-primary px-14 py-2 text-lg rounded-lg hover:bg-sky-700 bg-sky-800 text-white font-semibold '>Login</button>
+  <button type='submit' className='btn btn-primary px-14 py-2 text-lg rounded-lg hover:bg-sky-900 text-black bg-sky-700 hover:text-white font-semibold '>Login</button>
 </div>
 <div className='mb- w-full flex flex-col text-sm  items-center justify-center mt-2'>
   <p>Do'not account ?</p>
