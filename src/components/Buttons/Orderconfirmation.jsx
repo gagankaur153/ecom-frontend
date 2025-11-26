@@ -9,7 +9,7 @@ const Orderconfirmation = () => {
   },[])
   console.log( "recenty order",recentlyorder )
   return (
-    <div>
+    <div className='mt-20 p-2 '>
     <div className='flex items-center flex-col  m-6 space-y-2 '>
       <h1 className='font-semibold text-xl md:text-5xl'>Your order has been confirm ,</h1>
       <h2 className='font-semibold text-lg md:text-4xl'>it will delivered soon !</h2>
@@ -44,7 +44,7 @@ const Orderconfirmation = () => {
          <tr>
             <td className="p-2  text-center font-semibold text-blue-400">Total</td>
             <td></td>
-            <td className="p-2 bg-yellow-500 text-black font-bold">{recentlyorder?.amount}</td>
+            <td className="p-2 bg-yellow-500  text-black font-bold">{recentlyorder?.amount}</td>
             <td></td>
           </tr>
           </tbody>
@@ -70,8 +70,8 @@ const Orderconfirmation = () => {
       </div>    
     </div>
     <div className=' flex justify-center gap-20 p-9 '>
-        <NavLink to={'/'}  className='bg-yellow-600 rounded px-4 py-1 font-bold'>Continue Shopping...</NavLink>
-        <NavLink to={'/profile'}  className='bg-blue-600 rounded px-4 py-1 font-bold'>All Order's</NavLink>
+        <NavLink to={'/'}  className='bg-yellow-600 hover:bg-yellow-700 rounded px-4 py-1 font-bold'>Continue Shopping...</NavLink>
+        <NavLink to={'/profile'}  className='bg-blue-600 hover:bg-sky-700 rounded px-4 py-1 font-bold'>All Order's</NavLink>
       </div>
     </div>
   )

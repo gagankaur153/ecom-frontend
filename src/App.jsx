@@ -3,16 +3,15 @@ import { Route, Routes } from 'react-router'
 import {lazy, Suspense} from 'react'
 import Showproduct from './components/Product/Showproduct'
 const Cart = lazy(()=> import('./components/Buttons/Cart'))
+const Profile = lazy(()=> import ('./components/User/Profile'))
 // import Cart from './components/Buttons/Cart'
 import Login from './components/User/Login'
-import Profile from './components/User/Profile'
-import Home from './components/Home/Home'
+// import Profile from './components/User/Profile'
 import Navbar from './components/Buttons/Navbar'
 import Singleproduct from './components/Product/Singleproduct'
 import Register from './components/User/Register'
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { LuLogOut } from 'react-icons/lu'
 import Address from './components/Buttons/Address'
 import Checkout from './components/Buttons/Checkout'
 import Protectedroute from './components/User/Protectedroute'
@@ -33,7 +32,7 @@ const App = () => {
 
       <Routes>
         <Route path='/' element={<Showproduct/>}/>
-       <Route path='/singleproduct/:id' element={<Singleproduct/>}/>
+       <Route path='/singleproduct/:id' element={<Protectedroute><Singleproduct/></Protectedroute>}/>
         <Route path='/cart' element={<Protectedroute><Cart/></Protectedroute>}/>
         <Route path='/profile' element={<Protectedroute><Profile/></Protectedroute>}/>
         <Route path='/login' element={<Login/>}/>

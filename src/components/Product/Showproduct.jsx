@@ -27,9 +27,9 @@ const Showproduct = () => {
             
                 {products.map((product)=>(
                   <div  key={product._id} className="card  rounded-xl my-4 p-4 h-fit bg-gray-900 shadow-lg hover:bg-gray-950"  >
-                 <div className='flex justify-center m-2 rounded-xl  items-center '>
+                 <NavLink to={`/singleproduct/${product._id}`} className='flex justify-center m-2 rounded-xl  items-center '>
                  <img src={product.image} className="card-img-top rounded-xl border border-yellow-600 " style={{width:["150px"], height:["200px"]}} alt="..."/>
-                 </div>
+                 </NavLink>
                   <div className="card-body text-base md:text-xl">
                     <h5 className="card-title">{product.title}</h5>
                     <div className=' items-center justify-center gap-2 lg:flex p-2 '>
