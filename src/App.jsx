@@ -8,7 +8,6 @@ import Login from './components/User/Login'
 import Profile from './components/User/Profile'
 import Home from './components/Home/Home'
 import Navbar from './components/Buttons/Navbar'
-import Appcontext  from './components/Context/Appcontext'
 import Singleproduct from './components/Product/Singleproduct'
 import Register from './components/User/Register'
 import { ToastContainer } from "react-toastify";

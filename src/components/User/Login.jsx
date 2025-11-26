@@ -18,7 +18,7 @@ const Login = () => {
   }
   return (
    <>
-    <div className='  h-[90vh] flex items-center mt-20 justify-center '>
+    <div className='  h-[90vh] flex items-center mt-28 justify-center '>
      <form onSubmit={handleform} className=' container shadow-xl rounded-2xl bg-gray-900 w-1/2 p-10  '>
      <div className="mb-6  flex flex-col space-y-2 ">
   <label className="form-label text-lg font-semibold">Email address</label>
