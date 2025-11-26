@@ -26,7 +26,7 @@ const Showproduct = () => {
             products && <div className='text-white gap-2 md:gap-6  justify-items-center p-8 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 '>
             
                 {products.map((product)=>(
-                  <NavLink to={`/singleproduct/${product._id}`}  key={product._id} className="card  rounded-xl my-4 p-4 h-fit bg-gray-900 shadow-lg hover:bg-gray-950"  >
+                  <div  key={product._id} className="card  rounded-xl my-4 p-4 h-fit bg-gray-900 shadow-lg hover:bg-gray-950"  >
                  <div className='flex justify-center m-2 rounded-xl  items-center '>
                  <img src={product.image} className="card-img-top rounded-xl border border-yellow-600 " style={{width:["150px"], height:["200px"]}} alt="..."/>
                  </div>
@@ -45,7 +45,7 @@ const Showproduct = () => {
                     </>}
                     </div>
                   </div>
-                </NavLink>
+                </div>
                 ))}
             </div>
         }

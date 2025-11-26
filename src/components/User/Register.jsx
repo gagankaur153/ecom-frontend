@@ -18,7 +18,7 @@ const Register = () => {
   return (
 
     <>
-    <div className='  h-[90vh] flex items-center  justify-center '>
+    <div className=' mt-20 h-[90vh] flex items-center  justify-center '>
     <form onSubmit={handleform} className=' container shadow-xl rounded-2xl bg-gray-900 w-1/2 p-10  '>
     <div className="mb-6  flex flex-col space-y-2 ">
   <label className="form-label text-lg font-semibold">Username</label>

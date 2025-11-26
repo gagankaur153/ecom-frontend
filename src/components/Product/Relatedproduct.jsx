@@ -15,10 +15,10 @@ const Relatedproduct = ({category}) => {
           realtedprodcts && <div className='text-white gap-2 md:gap-6  justify-items-center p-8 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 '>
           
               { realtedprodcts.map((product)=>(
-                <NavLink to={`/singleproduct/${product._id}`}   key={product._id} className="card rounded-xl my-4 p-4 h-fit bg-gray-900 hover:bg-gray-950"  >
-               <div  className='flex justify-center m-2 rounded-xl  items-center '>
+                <div  key={product._id} className="card rounded-xl my-4 p-4 h-fit bg-gray-900 hover:bg-gray-950"  >
+               <NavLink to={`/singleproduct/${product._id}`}   className='flex justify-center m-2 rounded-xl  items-center '>
                <img src={product.image} className="card-img-top rounded-xl border border-yellow-600 " style={{width:["150px"], height:["200px"]}} alt="..."/>
-               </div>
+               </NavLink>
                 <div className="card-body text-base md:text-xl">
                   <h5 className="card-title">{product.title}</h5>
                   <div className=' items-center justify-center gap-2 lg:flex p-2 '>
@@ -26,7 +26,7 @@ const Relatedproduct = ({category}) => {
                   <button  onClick={()=>addcart(product._id)} className="btn  btn-danger px-1  bg-yellow-600 hover:bg-yellow-800">Add to cart</button>
                   </div>
                 </div>
-              </NavLink>
+              </div>
               ))}
           </div>
       }

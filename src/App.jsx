@@ -1,7 +1,9 @@
-import React, { useContext } from 'react'
-import { Route, Router, Routes } from 'react-router'
+import React from 'react'
+import { Route, Routes } from 'react-router'
+import {lazy, Suspense} from 'react'
 import Showproduct from './components/Product/Showproduct'
-import Cart from './components/Buttons/Cart'
+const Cart = lazy(()=> import('./components/Buttons/Cart'))
+// import Cart from './components/Buttons/Cart'
 import Login from './components/User/Login'
 import Profile from './components/User/Profile'
 import Home from './components/Home/Home'
@@ -21,12 +23,14 @@ import Orderconfirmation from './components/Buttons/Orderconfirmation'
 import Allorders from './components/Admin/Allorders'
 import Alluser from './components/Admin/Alluser'
 
+
 const App = () => {
  
   return (
     <>
     
      <Navbar/>
+     <Suspense fallback={<div><h2>Loading...</h2></div>}></Suspense>
 
       <Routes>
         <Route path='/' element={<Showproduct/>}/>
