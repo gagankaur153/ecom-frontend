@@ -19,14 +19,18 @@ const Login = () => {
   }
   return (
    <>
-    <div className='min-h-screen flex items-center justify-center text-white bg-gradient-to-br from-gray-950 to-blue-950 px-5'>
-     <form onSubmit={handleform} className=' shadow-xl rounded-2xl w-full max-w-md backdrop-blur-lg bg-white/10 border  border-gray-900 p-10  '>
+    <div className='min-h-screen mt-20 flex items-center justify-center text-white bg-gradient-to-br from-gray-950 to-blue-950 px-5'>
+     <form onSubmit={handleform} className='rounded-2xl shadow-none w-full max-w-md backdrop-blur-lg bg-white/10 border  border-gray-600 p-10  '>
       <h1 className='text-center font-bold text-4xl mb-7'>Welcome Back</h1>
      <div className="mb-6  flex flex-col space-y-1 ">
 
       {/* Email address */}
+
+
   <label className=" text-lg font-semibold">Email address</label>
-  <input type="string" name='email' value={data.email} onChange={inputhandle} className=" px-4 py-3 text-black rounded-xl focus:ring-2 focus:ring-blue-400 focus:outline-none" id="exampleFormControlInput1" placeholder="name@example.com"/>
+  <input type="string" name='email' value={data.email} onChange={inputhandle} 
+  className=" px-4 py-3 text-black rounded-xl focus:ring-2 focus:ring-blue-400 shadow-none focus:shadow-none" id="exampleFormControlInput1" 
+  placeholder="name@example.com"/>
 </div>
 
 {/* Password */}
