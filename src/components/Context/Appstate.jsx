@@ -34,7 +34,7 @@ const privateAxios = axios.create({
 
     // get all product
     const getallproduct = ()=>{
-        privateAxios.get(`${url}/product/allproduct?search=${search}`)
+        axios.get(`${url}/product/allproduct?search=${search}`)
         .then((res)=>{
             setproducts(res.data.data)
             console.log(res)

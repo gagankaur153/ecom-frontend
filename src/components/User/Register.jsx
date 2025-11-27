@@ -44,10 +44,10 @@ const emailregex = /^[a-z0-9#_$]+@gmail\.com$/
   return (
 
     <>
-    <div className=' mt-20 h-[90vh] flex items-center text-white bg-gradient-to-br from-gray-950 to-blue-950  justify-center px-5'>
+    <div className=' mt-28 h-[90vh] flex items-center text-white bg-gradient-to-br from-gray-950 to-blue-950  justify-center px-5'>
     <form onSubmit={handleform}
      className='shadow-2xl backdrop-blur-lg bg-white/10 border w-full max-w-md border-gray-900 rounded-2xl p-7 space-y-3 '>
-      <div className='text-center text-4xl font-bold mb-9'>
+      <div className='text-center text-2xl md:text-4xl font-bold mb-9'>
         <h1>Create Account</h1>
       </div>
 

@@ -15,31 +15,33 @@ const Showproduct = () => {
   
   return (
    <>
-       <div className=' min-h-screen mt-20 bg-black'>
-      <div className='d-flex items-center justify-center'>
+       <div className=' min-h-screen mt-28 bg-black'>
+      <div className='flex mx-auto lg:justify-cente p-6'>
       {
-            products && <div className='text-white gap-2 md:gap-6  justify-items-center p-8 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 '>
+            products && <div className='text-white w-full gap-6  borde md:gap-10 mt-6 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 '>
             
                 {products.map((product)=>(
-                  <div  key={product._id} className="card  rounded-xl my-4 p-4 h-fit bg-gray-900 shadow-lg hover:bg-gray-950"  >
-                 <NavLink to={`/singleproduct/${product._id}`} className='flex justify-center m-2 rounded-xl  items-center '>
-                 <img src={product.image} className="card-img-top rounded-xl border border-yellow-600 " style={{width:["150px"], height:["200px"]}} alt="..."/>
+                  <div  key={product._id} className="rounded-xl p-2  h-fit md:p-6  bg-gray-900 shadow-lg hover:bg-gray-950"  >
+                 <NavLink to={`/singleproduct/${product._id}`} className='flex p-2 m-2 rounded-xl  items-center '>
+                 <img src={product.image} className="rounded-xl md:w-[200px] md:h-[200px] border border-yellow-600 " alt="..."/>
                  </NavLink>
-                  <div className="card-body text-base md:text-xl">
-                    <h5 className="card-title">{product.title}</h5>
-                    <div className=' items-center justify-center gap-2 lg:flex p-2 '>
-                    <button className="btn mb-2 lg:mb-0 btn-primary  px-1 bg-blue-600">Price: {product.price}</button>
+                  <div className="md:text-xl p-2 md:mb-3">
+                    <h5 className="">{product.title}</h5>
+                    </div>
+                    <div className=' md:flex p-2 md:gap-4 font-semibold justify-around space-y-2 md:space-y-0'>
+
+                    <button className=" px-2 xl:p-3 rounded md:px-1 lg:py-1 bg-blue-600">Price: {product.price}</button>
                     {role !== "admin"? <>
-                    <button  className="btn  btn-danger px-1  bg-yellow-600 hover:bg-yellow-800"
+                    <button  className="px-2 xl:p-3 rounded  md:px-1 lg:py-1 bg-yellow-600 hover:bg-yellow-800"
                     onClick={()=>addcart(product._id)}
                     >Add to cart</button>
                     </>: <>
-                    <button  className="btn  btn-danger px-1  bg-yellow-600 hover:bg-yellow-800"
+                    <button  className="px-2 xl:p-3 rounded md:px-1 lg:py-1 bg-yellow-600 hover:bg-yellow-800"
                     onClick={()=>updateproduct(product._id)}
                     >Update</button>
                     </>}
                     </div>
-                  </div>
+               
                 </div>
                 ))}
             </div>

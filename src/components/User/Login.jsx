@@ -21,7 +21,7 @@ const Login = () => {
    <>
     <div className='min-h-screen mt-20 flex items-center justify-center text-white bg-gradient-to-br from-gray-950 to-blue-950 px-5'>
      <form onSubmit={handleform} className='rounded-2xl shadow-none w-full max-w-md backdrop-blur-lg bg-white/10 border  border-gray-600 p-10  '>
-      <h1 className='text-center font-bold text-4xl mb-7'>Welcome Back</h1>
+      <h1 className='text-center font-bold text-2xl md:text-4xl mb-7'>Welcome Back</h1>
      <div className="mb-6  flex flex-col space-y-1 ">
 
       {/* Email address */}
