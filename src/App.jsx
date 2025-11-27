@@ -1,12 +1,12 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Route, Routes } from 'react-router'
-import {lazy, Suspense} from 'react'
+// import {lazy, Suspense} from 'react'
 import Showproduct from './components/Product/Showproduct'
-const Cart = lazy(()=> import('./components/Buttons/Cart'))
-const Profile = lazy(()=> import ('./components/User/Profile'))
-// import Cart from './components/Buttons/Cart'
+// const Cart = lazy(()=> import('./components/Buttons/Cart'))
+// const Profile = lazy(()=> import ('./components/User/Profile'))
+import Cart from './components/Buttons/Cart'
 import Login from './components/User/Login'
-// import Profile from './components/User/Profile'
+import Profile from './components/User/Profile'
 import Navbar from './components/Buttons/Navbar'
 import Singleproduct from './components/Product/Singleproduct'
 import Register from './components/User/Register'
@@ -20,15 +20,37 @@ import Updateproduct from './components/Admin/Updateproduct'
 import Orderconfirmation from './components/Buttons/Orderconfirmation'
 import Allorders from './components/Admin/Allorders'
 import Alluser from './components/Admin/Alluser'
+import Loaading from './components/Loaading'
+import axios from 'axios'
+
+
 
 
 const App = () => {
+  const [Loading, setLoading] = useState(false)
+  useEffect(()=>{
+  axios.interceptors.request.use((config)=>{
+    setLoading(true);
+    return config;
+  },
+  (error)=>{
+    return Promise.reject(error)
+  })
+
+  axios.interceptors.response.use((config)=>{
+    setLoading(false);
+    return config;
+  },
+  (error)=>{
+    return Promise.reject(error)
+  })
+  },[])
  
   return (
     <>
     
      <Navbar/>
-     <Suspense fallback={<div><h2>Loading...</h2></div>}></Suspense>
+     <Loaading show={Loading}/>
 
       <Routes>
         <Route path='/' element={<Showproduct/>}/>

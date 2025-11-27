@@ -86,7 +86,7 @@ const handlepayment = ()=>{
 
     
   return (
-    <div className=' m-2 mt-20 p-4'>
+    <div className=' text-white m-2 mt-20 p-4'>
    <div className=' p-2'>
     {
         carts?.item.length == 0 ? 

@@ -19,7 +19,7 @@ const Alluser = () => {
         allusers()
     },[])
   return (
-    <div className=''>
+    <div className='text-white'>
     {
    users.length == 0 ? <h1>No User register</h1> : 
    <div className='flex justify-center  mt-28'>

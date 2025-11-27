@@ -35,7 +35,7 @@ const click= (e)=>{
  
 
   return (
-    <div className='mt-20 p-10 max-w-8xl flex justify-center items-center '>
+    <div className='mt-20 p-10 max-w-8xl flex justify-center text-white items-center '>
     <div className='border border-yellow-100 rounded m-5 w-full  p-8 mx-auto '>
         <div className='text-center text-3xl md:text-4xl font-bold'>
             <h1>Shipping Address</h1>

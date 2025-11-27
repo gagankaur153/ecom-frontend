@@ -14,14 +14,14 @@ console.log("all orders", allorders)
 
   return (
   <>
-<div className='p-6 mt-16 text-center space-y-2'>
+<div className='p-6 mt-16 text-white text-center space-y-2 text-white'>
 <h1 className='text-3xl font-bold'>{user_detail?.username}</h1>
 <h2 className='text-xl font-semibold'>{user_detail?.email}</h2>
 <h2 className='text-xl font-semibold'>Total orders: {allorders.length}</h2>
 </div>
 
 
-<div className="flex justify-center">
+<div className="flex justify-center text-white">
   <div className="w-[80%]">
     {allorders.map((item, index) => (
       <div

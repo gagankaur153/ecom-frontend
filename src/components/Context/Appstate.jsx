@@ -19,6 +19,7 @@ const Appstate = (props) => {
     const [role, setrole] = useState("user")
     const [recentlyorder , setrecentlyeorder] = useState([])
     const [loading , setloading] = useState(false)
+
    
     
   // const url = "https://ecom-backend-payment-intigrate.onrender.com"
@@ -27,12 +28,16 @@ const Appstate = (props) => {
 ? "http://localhost:4000"  // local backend
 : "https://ecom-backend-payment-intigrate.onrender.com"; // deployed backend
 
-    
+const privateAxios = axios.create({
+  baseURL : url
+})
+
     // get all product
     const getallproduct = ()=>{
-        axios.get(`${url}/product/allproduct?search=${search}`)
+        privateAxios.get(`${url}/product/allproduct?search=${search}`)
         .then((res)=>{
             setproducts(res.data.data)
+            console.log(res)
         })
         .catch((err)=>{
             console.log(err)
@@ -57,7 +62,7 @@ const Appstate = (props) => {
    
 
    // add product admin
-   const addnewproduct = (title,price,category,description,file,setfile, setproductdetail,fileInputRef )=>{
+   const addnewproduct = (title,price,category,description,file,setfile, setproductdetail,fileInputRef ,setLoading)=>{
     const formData = new FormData()
     formData.append("title",title)
     formData.append("price",price)
@@ -65,9 +70,10 @@ const Appstate = (props) => {
     formData.append("category",category)
     formData.append("image",file)
     console.log(formData)
-    axios.post(`${url}/product/addproduct`,formData,{withCredentials:true, headers:{
+    privateAxios.post('/product/addproduct',formData,{withCredentials:true, headers:{
       "Content-Type":"multipart/form-data"
     }})
+    setLoading(true)
     .then((res)=>{
       setproductdetail({
         title: " ",
@@ -85,17 +91,22 @@ const Appstate = (props) => {
     .catch((err)=>{
       console.log(err)
     })
+    .finally(()=>{
+      setLoading(false)
+    })
+    
   }
 
   // update product
-  const updateproduct = (id,title,price,category,description,file,setfile, setproductdetail,fileInputref)=>{
+  const updateproduct = (id,title,price,category,description,file,setfile, setproductdetail,fileInputref, setLoading)=>{
     const formData = new FormData()
     formData.append("title",title)
     formData.append("price",price)
     formData.append("description", description)
     formData.append("category",category)
     formData.append("image",file)
-    axios.put(`${url}/product/updateproduct/${id}`,formData,{withCredentials:true, headers:{
+    setLoading(true)
+    privateAxios.put(`/product/updateproduct/${id}`,formData,{withCredentials:true, headers:{
       "Content-Type":"multipart/form-data"
     }})
     .then((res)=>{
@@ -116,18 +127,22 @@ const Appstate = (props) => {
     .catch((err)=>{
       console.log(err)
     })
+    .finally(()=>{
+      setLoading(false)
+    })
   }
 
 
 
     // retgister
-    const register = (username,email,password, setdata)=>{
+    const register = (username,email,password, setdata,setLoading)=>{
         const payload = {
             username:username,
             email:email,
             password:password
           }
-          axios.post(`${url}/api/register`,payload)
+          setLoading(true)
+          privateAxios.post('/api/register',payload)
           .then((res)=>{
             setdata({username:" ",email:" ",password:" "})
             toast.success(res?.data?.message)
@@ -138,16 +153,20 @@ const Appstate = (props) => {
             toast.error(err?.response?.data?.message)
             console.log(err)
           })
+          .finally(()=>{
+            setLoading(false)
+          })
     }
 
 
     // login
-    const login = (email,password, setdata)=>{
+    const login = (email,password, setdata,setLoading)=>{
         const payload = {
             email:email,
             password:password
           }
-          axios.post(`${url}/api/login`,payload,{withCredentials:true})
+          setLoading(true)
+          privateAxios.post('/api/login',payload,{withCredentials:true})
           .then((res)=>{
             setdata({email:" ",password:" "})
             setrole(res?.data?.role)
@@ -161,6 +180,9 @@ const Appstate = (props) => {
           .catch((err)=>{
             toast.error(err?.response?.data?.message)
             console.log(err)
+          })
+          .finally(()=>{
+            setLoading(false)
           })
     }
     useEffect(()=>{
@@ -203,7 +225,7 @@ const Appstate = (props) => {
     
     // add to cart
     const addcart = (productid)=>{
-       axios.post(`${url}/cart/addcart/${productid}`,{},{withCredentials:true})
+       privateAxios.post(`/cart/addcart/${productid}`,{},{withCredentials:true})
        .then((res)=>{
         toast.success(res?.data?.message)
         console.log("add cart",res.data)
@@ -286,7 +308,7 @@ const deletecart = ()=>{
           pincode,
           address,
       }
-      axios.post(`${url}/address/add`,payload,{withCredentials:true})
+      privateAxios.post('/address/add',payload,{withCredentials:true})
       .then((res)=>{
           setdata({
               fullname: " ",

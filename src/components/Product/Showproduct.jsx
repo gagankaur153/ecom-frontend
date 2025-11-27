@@ -5,19 +5,17 @@ import { NavLink, useNavigate } from 'react-router';
 
 
 const Showproduct = () => {
-    const {products,addcart,role} = useContext(Appcontext)
+    const {products,addcart,role,getallproduct} = useContext(Appcontext)
     const navigate = useNavigate()
    const updateproduct = (id)=>{
          navigate(`/updateproduct/${id}`)
    }
-  const [value, setvalue] = useState(false)
-  const lufilter = ()=>{
-    setvalue(!value)
-  }
+   useEffect(()=>{getallproduct()},[])
+ 
   
   return (
    <>
-       <div className=' h-screen mt-24 bg-black'>
+       <div className=' min-h-screen mt-20 bg-black'>
       <div className='d-flex items-center justify-center'>
       {
             products && <div className='text-white gap-2 md:gap-6  justify-items-center p-8 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 '>

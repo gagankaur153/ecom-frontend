@@ -19,7 +19,7 @@ const Allorders = () => {
         alluserorders()
     },[])
   return (
-    <div>
+    <div className='text-white'>
       {
         orders.length === 0 ? <h1>No orders</h1> : <>
         <div className="flex mt-28 justify-center">

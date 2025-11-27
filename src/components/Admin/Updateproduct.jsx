@@ -5,7 +5,7 @@ import Appcontext from '../Context/Appcontext'
 const Updateproduct = () => {
     const {id} = useParams()
     const fileInputref = useRef()
-    const {fetchsingleproduct, updateproduct,loading , setloading} = useContext(Appcontext)
+    const {fetchsingleproduct, updateproduct} = useContext(Appcontext)
     const [product,setproduct ] = useState(null)
     const [file, setfile] = useState(null)
     const [productdetail, setproductdetail] = useState({
@@ -14,6 +14,7 @@ const Updateproduct = () => {
         description: "",
         category: ""
      })
+    const [Loading , setLoading] = useState(false)
 useEffect(()=>{
      fetchsingleproduct(id,setproduct)
 },[id])
@@ -40,15 +41,12 @@ useEffect(()=>{
      }
      const submit = (e)=>{
         e.preventDefault()
-        setloading(true)
-        setTimeout(() => {
-            updateproduct(id,productdetail?.title,productdetail?.price,productdetail?.category, productdetail?.description, file,setfile,setproductdetail,fileInputref)
-            setloading(false)
-        }, 1000);
-     }
+            updateproduct(id,productdetail?.title,productdetail?.price,productdetail?.category, productdetail?.description, file,setfile,setproductdetail,fileInputref,setLoading)
+        }
+     
  
   return (
-    <div className=' flex mt-28 justify-center max-w-8xl h-[90%]  '>
+    <div className=' flex mt-28 justify-center max-w-8xl h-[90%] text-white '>
     <div className='border  border-yellow-100 mx-auto w-[90%] sm:w-[90%] rounded-xl md:w-2/3 m-6 p-8  space-y-4'>
          <div className=''>
            <h1 className='text-center text-2xl md:text-5xl font-semibold'>
@@ -86,7 +84,7 @@ useEffect(()=>{
            <textarea type="text" className='bg-gray-900 py-3 px-2 rounded border-white border' name='description' value={productdetail.description || ""} onChange={(e)=>inpputhandler(e)} />
        </div>
        <div className='p-8 flex justify-center '>
-           <button className='py-2 px-6 rounded-2xl bg-purple-900 text-2xl font-semibold hover:bg-purple-950' onClick={(e)=>submit(e)}>{loading ? "Loading..." : "Submit"}</button>
+           <button className='py-2 px-6 rounded-2xl bg-purple-900 text-2xl font-semibold hover:bg-purple-950' onClick={(e)=>submit(e)}>{Loading ? "Loading..." : "Submit"}</button>
        </div>
     </div>
 

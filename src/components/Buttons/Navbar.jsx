@@ -70,7 +70,7 @@ const Navbar = () => {
   <nav className='  md:hidden bg-purple-900 sticky top-0 p-3 w-full flex flex-col space-y-3  '>
 
      
-     <div className='text-2xl text-white font-semibold'>
+     <div className='text-2xl text-white font-semibold hover:underline'>
         <NavLink to={'/'}>Mern-Ecommerce</NavLink>
       </div>
 
@@ -113,7 +113,7 @@ const Navbar = () => {
  
  {/* desktop device navbar */}
     <nav className='hidden sticky-top w-full md:flex bg-purple-900 p-5 items-center justify-between mx-auto'>
-        <div className='md:text-3xl text-white font-sans'>
+        <div className='md:text-3xl text-white font-sans hover:underline'>
             <NavLink to={'/'}>Mern Ecom</NavLink>
         </div>
         <div>

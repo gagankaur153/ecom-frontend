@@ -14,7 +14,7 @@ useEffect(()=>{
 },[id])
   return (
 <>
-<div className='flex mt-20 justify-center items-center'>
+<div className='flex mt-20 justify-center text-white items-center'>
 <div className="container flex justify-center m-8 ">
     <div className='w-1/2 flex justify-center'>
           <img className='w-[220px] h-[250px] rounded' src={product.image} alt="" />
