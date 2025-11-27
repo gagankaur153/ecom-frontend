@@ -231,6 +231,7 @@ const privateAxios = axios.create({
         console.log("add cart",res.data)
        })
        .catch((err)=>{
+        toast.error("please login")
         console.log(err)
        })
      }
