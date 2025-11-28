@@ -10,20 +10,20 @@ const Relatedproduct = ({category}) => {
     },[category,products])
   
   return (
-    <div className='d-flex items-center justify-center'>
+    <div className='flex mt-4'>
     {
-          realtedprodcts && <div className='text-white gap-2 md:gap-6  justify-items-center p-8 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 '>
+          realtedprodcts && <div className='text-white p-4 md:m-5 gap-7 md:gap-6  justify-items-center md:p-8 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 '>
           
               { realtedprodcts.map((product)=>(
-                <div  key={product._id} className="card rounded-xl my-4 p-4 h-fit bg-gray-900 hover:bg-gray-950"  >
+                <div  key={product._id} className="rounded-xl p-2 md:p-6 bg-gray-900 hover:bg-gray-950"  >
                <NavLink to={`/singleproduct/${product._id}`}   className='flex justify-center m-2 rounded-xl  items-center '>
-               <img src={product.image} className="card-img-top rounded-xl border border-yellow-600 " style={{width:["150px"], height:["200px"]}} alt="..."/>
+               <img src={product.image} className=" rounded-xl border border-yellow-600 w-[300px] h-[100px] md:h-[150px]"alt="..."/>
                </NavLink>
-                <div className="card-body text-base md:text-xl">
-                  <h5 className="card-title">{product.title}</h5>
-                  <div className=' items-center justify-center gap-2 lg:flex p-2 '>
-                  <button className="btn mb-2 lg:mb-0 btn-primary  px-1 bg-blue-600">Price: {product.price}</button>
-                  <button  onClick={()=>addcart(product._id)} className="btn  btn-danger px-1  bg-yellow-600 hover:bg-yellow-800">Add to cart</button>
+                <div className="md:text-xl">
+                  <h5 className="">Title:{product.title}</h5>
+                  <div className=' flex md:items-center flex-col p-3'>
+                  <button className=" mb-2 px-1 md:py-1  bg-blue-600 rounded md:px-2">Price: {product.price}</button>
+                  <button  onClick={()=>addcart(product._id)} className=" px-1 md:px-2 rounded bg-yellow-600 hover:bg-yellow-800">Add to cart</button>
                   </div>
                 </div>
               </div>

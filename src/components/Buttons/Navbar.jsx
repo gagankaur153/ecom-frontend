@@ -70,7 +70,7 @@ const Navbar = () => {
   <nav className='  md:hidden bg-purple-900 sticky top-0 p-3 w-full flex flex-col space-y-3  '>
 
      
-     <div className='text-2xl text-white font-semibold hover:underline'>
+     <div className='text-2xl text-white font-semibold underline'>
         <NavLink to={'/'}>Mern-Ecommerce</NavLink>
       </div>
 

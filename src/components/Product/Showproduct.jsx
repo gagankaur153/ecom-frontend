@@ -15,8 +15,8 @@ const Showproduct = () => {
   
   return (
    <>
-       <div className=' min-h-screen mt-28 bg-black'>
-      <div className='flex mx-auto lg:justify-cente p-6'>
+       <div className=' min-h-screen mt-20 bg-black'>
+      <div className='flex mx-auto  p-6'>
       {
             products && <div className='text-white w-full gap-6  borde md:gap-10 mt-6 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 '>
             
