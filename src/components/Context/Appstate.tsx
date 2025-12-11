@@ -11,8 +11,9 @@ type IState = {
 };
 
 const Appstate: React.FC<propstype> = ({ children }: propstype) => {
+  const storedtheme = localStorage.getItem("istheme") as "light" | "dark" | null
   const navigate = useNavigate();
-  const [theme, setTheme] = useState(localStorage.getItem("istheme") || "light");
+  const [theme, setTheme] = useState<"light" | "dark">(storedtheme ?? "light");
   const [products, setproducts] = useState(null);
   const [search, setsearch] = useState("");
   const [isauth, setisauth] = useState("false");
@@ -271,7 +272,6 @@ const Appstate: React.FC<propstype> = ({ children }: propstype) => {
     const theme = localStorage.getItem("istheme")
     let rolee: any = localStorage.getItem("isrole");
     setrole(rolee);
-    setTheme(theme)
     if (authstatus === "true") {
       setisauth("true");
     }
@@ -298,8 +298,6 @@ const Appstate: React.FC<propstype> = ({ children }: propstype) => {
         toast.success(res?.data?.message);
         localStorage.removeItem("isauth");
         localStorage.removeItem("isrole");
-        localStorage.removeItem("istheme");
-        setTheme("false")
         setisauth("false");
         setrole(" ");
         console.log("logout", res);

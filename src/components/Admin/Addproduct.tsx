@@ -1,4 +1,4 @@
-import { ChangeEvent, FormEvent, useContext, useRef, useState } from "react";
+import { ChangeEvent, useContext, useRef, useState } from "react";
 import Appcontext from "../Context/Appcontext";
 
 const Addproduct = () => {
@@ -57,19 +57,20 @@ const Addproduct = () => {
         {/* TITLE */}
         <div className="flex flex-col space-y-2">
           <input
-          id="logininput"
+            id="logininput"
             type="text"
             name="title"
             value={productdetail?.title || ""}
             onChange={(e) => inpputhandler(e)}
-            className="py-2 px-4 border rounded-xl focus:ring-1 focus:ring-blue-300" placeholder="enter title"
+            className="py-2 px-4 border rounded-xl focus:ring-1 focus:ring-blue-300"
+            placeholder="enter title"
           />
         </div>
 
         {/* Price */}
         <div className="flex flex-col space-y-2">
           <input
-           id="logininput"
+            id="logininput"
             type="text"
             className="py-2 px-4 border rounded-xl focus:ring-1 focus:ring-blue-300"
             name="price"
@@ -82,7 +83,7 @@ const Addproduct = () => {
         {/* Category */}
         <div className="flex flex-col space-y-2">
           <input
-           id="logininput"
+            id="logininput"
             type="text"
             placeholder="  --select category--"
             className="py-2 px-4 border rounded-xl focus:ring-1 focus:ring-blue-300"
@@ -95,7 +96,7 @@ const Addproduct = () => {
         {/* URL */}
         <div className="flex flex-col space-y-2">
           <input
-           id="logininput"
+            id="logininput"
             type="file"
             ref={fileInputRef}
             onChange={(e) => filehandler(e)}
@@ -107,12 +108,12 @@ const Addproduct = () => {
         {/* Description */}
         <div className="flex flex-col space-y-2">
           <textarea
-           id="logininput"
+            id="logininput"
             className="py-2 px-4 border rounded-xl focus:ring-1 focus:ring-blue-300"
             name="description"
             value={productdetail?.description || ""}
             onChange={(e) => inpputhandler(e)}
-            placeholder='--description--'
+            placeholder="--description--"
           />
         </div>
 
