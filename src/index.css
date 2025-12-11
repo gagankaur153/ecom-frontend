@@ -2,15 +2,52 @@
 @tailwind components;
 @tailwind utilities;
 
+
+:root {
+    --text-color: black;
+    --bg-color: white;
+    --border: 2px solid rgb(222, 217, 217);
+    --navhover: rgb(88, 82, 82);
+    --navbg-color: white;
+    --input-color: rgb(187, 176, 176);
+    --navbuttontextcolor: white;
+}
+
 body{
-    background-color: black;
+    background-color: var(--bg-color);
+    color: var(--text-color);
     margin: 0;
     padding: 0;
+}
+#navbar{
+    background-color: var(--navbg-color);
 }
 body::-webkit-scrollbar{
     display: none;
 }
-input{
-    outline: none;
-    box-shadow: none;
+
+input, button, #text, h1, h2,h5 tr,td,th ,p, label   {
+    color: var(--text-color);
+    background-color: var(--bg-color);
 }
+#navbutton:hover{
+   background-color: var(--navhover);
+   color: var(--navbuttontextcolor);
+}
+#logininput{
+    outline: none;
+    /* background-color: var(--input-color); */
+}
+
+
+#border {
+    color: var(--text-color);
+    background-color: var(--bg-color);
+    border: var(--border);
+    border-radius: 10px;
+}
+
+
+
+
+

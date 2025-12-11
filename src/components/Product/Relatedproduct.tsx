@@ -1,21 +1,26 @@
-import React, { useContext, useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import Appcontext from '../Context/Appcontext'
 import { NavLink } from 'react-router';
+type categorytype = {
+  category: string
+}
 
-const Relatedproduct = ({category}) => {
-    const {products, addcart} = useContext(Appcontext)
+const Relatedproduct = ({category}:categorytype) => {
+  const Appstate = useContext(Appcontext)
+    if(!Appstate) return null
+    const {products, addcart} = Appstate
     const [realtedprodcts,setrealtedproduct] = useState([])
     useEffect(()=>{
-      setrealtedproduct(products?.filter((item)=> item?.category?.toLowerCase() == category?.toLowerCase()))
+      setrealtedproduct(products?.filter((item: any)=> item?.category?.toLowerCase() == category?.toLowerCase()))
     },[category,products])
   
   return (
     <div className='flex mt-4'>
     {
-          realtedprodcts && <div className='text-white p-4 md:m-5 gap-7 md:gap-6  justify-items-center md:p-8 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 '>
+          realtedprodcts && <div className=' p-4 md:m-5 gap-7 md:gap-6  justify-items-center md:p-8 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 '>
           
-              { realtedprodcts.map((product)=>(
-                <div  key={product._id} className="rounded-xl p-2 md:p-6 bg-gray-900 hover:bg-gray-950"  >
+              { realtedprodcts.map((product: any)=>(
+                <div  key={product._id} className="rounded-xl p-2 md:p-6  shadow-lg "  >
                <NavLink to={`/singleproduct/${product._id}`}   className='flex justify-center m-2 rounded-xl  items-center '>
                <img src={product.image} className=" rounded-xl border border-yellow-600 w-[300px] h-[100px] md:h-[150px]"alt="..."/>
                </NavLink>
