@@ -32,7 +32,7 @@ const Appstate: React.FC<propstype> = ({ children }: propstype) => {
   // urls.js
   const url = window.location.origin.includes("localhost")
     ? "http://localhost:4000" // local backend
-    : "https://ecom-backend-payment-intigrate.onrender.com"; // deployed backend
+    : "https://ecom-backend-tdn9.onrender.com"; // deployed backend
 
   const privateAxios = axios.create({
     baseURL: url,
