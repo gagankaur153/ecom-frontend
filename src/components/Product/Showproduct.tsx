@@ -1,7 +1,7 @@
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import Appcontext from "../Context/Appcontext";
-import { LuFilter } from "react-icons/lu";
 import { NavLink, useNavigate } from "react-router";
+import { BeatLoader} from "react-spinners";
 
 const Showproduct = () => {
   const Appstate = useContext(Appcontext);
@@ -51,7 +51,7 @@ const Showproduct = () => {
                           className="px-2 rounded  md:px-1 lg:px-2  lg:py-2 bg-yellow-600 hover:bg-yellow-800"
                           onClick={() => addcart(product._id)}
                         >
-                          Add to cart
+                        Add to cart
                         </button>
                       </>
                     ) : (

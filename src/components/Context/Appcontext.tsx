@@ -29,9 +29,6 @@ interface AppContextType {
   oldaddress: any;
   fetchcarts: () => void;
   carts: any;
-  dec: any;
-  inc: any;
-  remove: any;
   quantityDecrease: (id: string) => void;
   quantityIncrease: (id: string) => void;
   quantityRemove: (id: string) => void;

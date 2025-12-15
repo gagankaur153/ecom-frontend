@@ -34,7 +34,7 @@ input, button, #text, h1, h2,h5 tr,td,th ,p, label   {
    background-color: var(--navhover);
    color: var(--navbuttontextcolor);
 }
-#logininput{
+.logininput{
     outline: none;
     /* background-color: var(--input-color); */
 }

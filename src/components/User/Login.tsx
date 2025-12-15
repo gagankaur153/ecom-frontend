@@ -49,8 +49,7 @@ const Login = () => {
               name="email"
               value={data.email}
               onChange={inputhandle}
-              className=" px-4 py-3 rounded-lg border "
-              id="logininput"
+              className="logininput px-4 py-3 rounded-lg border "
               placeholder="name@example.com"
             />
           </div>
@@ -59,9 +58,8 @@ const Login = () => {
           <div className="mb-10 relative flex flex-col space-y-1 ">
             {/* <label className="text-lg font-semibold">Password</label> */}
             <input
-              id="logininput"
               type={passwordshow ? "string" : "password"}
-              className="rounded-lg border px-4 py-3"
+              className=" logininput rounded-lg border px-4 py-3"
               name="password"
               value={data.password}
               onChange={inputhandle}

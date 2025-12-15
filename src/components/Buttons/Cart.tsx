@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Appcontext from "../Context/Appcontext";
 
@@ -10,17 +10,17 @@ const Cart = () => {
     fetchcarts,
     carts,
     quantityDecrease,
-    dec,
-    inc,
-    remove,
+  
     quantityIncrease,
     quantityRemove,
     deletecart,
   } = Appstate;
 
+  // const memorization = useMemo(()=> fetchcarts(),[dec,inc,remove])
+
   useEffect(() => {
     fetchcarts();
-  }, [dec, inc, remove]);
+  }, []);
 
   const decrease = (id: any) => {
     quantityDecrease(id);
