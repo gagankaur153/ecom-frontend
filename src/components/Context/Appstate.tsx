@@ -100,6 +100,7 @@ const Appstate: React.FC<propstype> = ({ children }: propstype) => {
     fileInputRef: any,
     setLoading: React.Dispatch<React.SetStateAction<boolean>>
   ): Promise<void> => {
+    const token = localStorage.getItem("token")
     const formData = new FormData();
     formData.append("title", title);
     formData.append("price", price);
@@ -110,9 +111,9 @@ const Appstate: React.FC<propstype> = ({ children }: propstype) => {
     setLoading(true);
     return privateAxios
       .post("/product/addproduct", formData, {
-        withCredentials: true,
         headers: {
           "Content-Type": "multipart/form-data",
+          Authorization: `Bearer ${token}`
         },
       })
       .then((res: any) => {
@@ -158,6 +159,7 @@ const Appstate: React.FC<propstype> = ({ children }: propstype) => {
     fileInputref: any,
     setLoading: React.Dispatch<React.SetStateAction<boolean>>
   ) => {
+    const token = localStorage.getItem("token")
     const formData = new FormData();
     formData.append("title", title);
     formData.append("price", price);
@@ -170,6 +172,7 @@ const Appstate: React.FC<propstype> = ({ children }: propstype) => {
         withCredentials: true,
         headers: {
           "Content-Type": "multipart/form-data",
+          Authorization: `Bearer ${token}`
         },
       })
       .then((res) => {
@@ -247,7 +250,7 @@ const Appstate: React.FC<propstype> = ({ children }: propstype) => {
     };
     setLoading(true);
     privateAxios
-      .post("/api/login", payload, { withCredentials: true })
+      .post("/api/login", payload)
       .then((res) => {
         setdata({ email: " ", password: " " });
         setrole(res?.data?.role);
@@ -255,6 +258,7 @@ const Appstate: React.FC<propstype> = ({ children }: propstype) => {
         localStorage.setItem("isauth", "true");
         localStorage.setItem("isrole", res.data.role);
         localStorage.setItem("istheme", theme);
+        localStorage.setItem("token", res.data.token)
         setisauth("true");
         toast.success(res.data.message);
         console.log("login", res.data);
@@ -269,7 +273,6 @@ const Appstate: React.FC<propstype> = ({ children }: propstype) => {
   };
   useEffect(() => {
     const authstatus = localStorage.getItem("isauth");
-    const theme = localStorage.getItem("istheme")
     let rolee: any = localStorage.getItem("isrole");
     setrole(rolee);
     if (authstatus === "true") {
@@ -279,8 +282,10 @@ const Appstate: React.FC<propstype> = ({ children }: propstype) => {
 
   // profile
   const profile = () => {
+    const token = localStorage.getItem("token")
     axios
-      .get(`${url}/api/getuser`, { withCredentials: true })
+    
+      .get(`${url}/api/getuser`, {headers: {Authorization: `Bearer ${token}`}})
       .then((res) => {
         setuser_detail(res.data.data);
         console.log("profile data", res.data.data);
@@ -292,12 +297,16 @@ const Appstate: React.FC<propstype> = ({ children }: propstype) => {
 
   //logout
   const logout = () => {
+  const token =  localStorage.getItem("token")
     axios
-      .delete(`${url}/api/logout`, { withCredentials: true })
+      .delete(`${url}/api/logout`, {headers: {
+        Authorization: `Bearer ${token}`
+      }})
       .then((res) => {
         toast.success(res?.data?.message);
         localStorage.removeItem("isauth");
         localStorage.removeItem("isrole");
+        localStorage.removeItem("token")
         setisauth("false");
         setrole(" ");
         console.log("logout", res);
@@ -310,8 +319,9 @@ const Appstate: React.FC<propstype> = ({ children }: propstype) => {
 
   // add to cart
   const addcart = (productid: string) => {
+    const token = localStorage.getItem("token")
     privateAxios
-      .post(`/cart/addcart/${productid}`, {}, { withCredentials: true })
+      .post(`/cart/addcart/${productid}`,{}, {headers: { Authorization: `Bearer ${token}`} })
       .then((res) => {
         toast.success(res?.data?.message);
         console.log("add cart", res.data);
@@ -324,8 +334,9 @@ const Appstate: React.FC<propstype> = ({ children }: propstype) => {
 
   // fetch all cart
   const fetchcarts = () => {
+    const token = localStorage.getItem("token")
     axios
-      .get(`${url}/cart/allcart`, { withCredentials: true })
+      .get(`${url}/cart/allcart`,{headers: { Authorization: `Bearer ${token}`} })
       .then((res) => {
         setcarts(res.data.data);
         console.log(oldaddress);
@@ -338,8 +349,9 @@ const Appstate: React.FC<propstype> = ({ children }: propstype) => {
 
   // quantity decrease
   const quantityDecrease = (id: string) => {
+    const token = localStorage.getItem("token")
     privateAxios
-      .put(`${url}/cart/decrease/${id}`, {}, { withCredentials: true })
+      .put(`${url}/cart/decrease/${id}`,{}, {headers: { Authorization: `Bearer ${token}`} } )
       .then((res) => {
         setdec(res.data.data);
         console.log(res.data.data);
@@ -351,8 +363,9 @@ const Appstate: React.FC<propstype> = ({ children }: propstype) => {
 
   // quantity increase
   const quantityIncrease = (id: string) => {
+    const token = localStorage.getItem("token")
     privateAxios
-      .put(`${url}/cart/increase/${id}`, {}, { withCredentials: true })
+      .put(`${url}/cart/increase/${id}`, {}, {headers: { Authorization: `Bearer ${token}`} })
       .then((res) => {
         setinc(res.data.data);
         console.log(res.data.data);
@@ -364,8 +377,9 @@ const Appstate: React.FC<propstype> = ({ children }: propstype) => {
 
   // quantity remove
   const quantityRemove = (id: string) => {
+    const token = localStorage.getItem("token")
     privateAxios
-      .put(`${url}/cart/removecart/${id}`, {}, { withCredentials: true })
+      .put(`${url}/cart/removecart/${id}`, {}, {headers: { Authorization: `Bearer ${token}`} })
       .then((res) => {
         setremove(res.data.data);
         console.log(res.data);
@@ -377,8 +391,9 @@ const Appstate: React.FC<propstype> = ({ children }: propstype) => {
 
   //  delete cart
   const deletecart = () => {
+    const token = localStorage.getItem("token")
     privateAxios
-      .put(`${url}/cart/deletecart`, {}, { withCredentials: true })
+      .put(`${url}/cart/deletecart`, {}, {headers: { Authorization: `Bearer ${token}`} })
       .then((res) => {
         console.log(res);
         fetchcarts();
@@ -407,6 +422,7 @@ const Appstate: React.FC<propstype> = ({ children }: propstype) => {
       }>
     >
   ) => {
+    const token = localStorage.getItem("token")
     const payload = {
       fullname,
       country,
@@ -416,7 +432,7 @@ const Appstate: React.FC<propstype> = ({ children }: propstype) => {
       address,
     };
     privateAxios
-      .post("/address/add", payload, { withCredentials: true })
+      .post("/address/add", payload,{headers: { Authorization: `Bearer ${token}`} })
       .then((res) => {
         setdata({
           fullname: " ",
@@ -440,8 +456,9 @@ const Appstate: React.FC<propstype> = ({ children }: propstype) => {
 
   // get old latest address
   const oldaddresss = () => {
+    const token = localStorage.getItem("token")
     axios
-      .get(`${url}/address/getaddress`, { withCredentials: true })
+      .get(`${url}/address/getaddress`, {headers: { Authorization: `Bearer ${token}`} })
       .then((res) => {
         setoldaddress(res.data.data[0]);
         navigate("/checkout");
@@ -454,8 +471,9 @@ const Appstate: React.FC<propstype> = ({ children }: propstype) => {
 
   // orderconfirm page
   const userorder = () => {
+    const token = localStorage.getItem("token")
     axios
-      .get(`${url}/payment/userorder`, { withCredentials: true })
+      .get(`${url}/payment/userorder`, {headers: { Authorization: `Bearer ${token}`} })
       .then((res) => {
         setRecentlyorder(res.data.data[0]);
         console.log("user recently order", res.data.data);
@@ -466,8 +484,9 @@ const Appstate: React.FC<propstype> = ({ children }: propstype) => {
   };
 
   const allorder = (setallorders: any) => {
+    const token = localStorage.getItem("token")
     axios
-      .get(`${url}/payment/userorder`, { withCredentials: true })
+      .get(`${url}/payment/userorder`, {headers: { Authorization: `Bearer ${token}`} })
       .then((res) => {
         setallorders(res.data.data);
         console.log("user all order", res.data);
