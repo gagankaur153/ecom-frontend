@@ -26,7 +26,7 @@ const Showproduct = () => {
               {products.map((product: any) => (
                 <div
                   key={product._id}
-                  className="rounded-xl p-2 h-fit md:p-6  shadow-lg "
+                  className="rounded-xl p-2 h-fit md:p-6  shadow-lg hover: "
                 >
                   <NavLink
                     to={`/singleproduct/${product._id}`}

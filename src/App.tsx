@@ -93,11 +93,7 @@ const App: React.FC = () => {
               </Protectedroute>
             }
           />
-        </Routes>
-      </Suspense>
-
-      <Routes>
-        <Route path="/login" element={<Login />} />
+          <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route
           path="/shipping"
@@ -139,7 +135,10 @@ const App: React.FC = () => {
             </Protectedroute>
           }
         />
-      </Routes>
+        </Routes>
+      </Suspense>
+
+    
 
       <ToastContainer position="top-right" autoClose={1000} />
     </>
