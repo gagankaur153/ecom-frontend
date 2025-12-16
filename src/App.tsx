@@ -1,14 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { Route, Routes } from "react-router";
-// import {lazy, Suspense} from 'react'
-import Showproduct from "./components/Product/Showproduct";
-// const Cart = lazy(()=> import('./components/Buttons/Cart'))
-// const Profile = lazy(()=> import ('./components/User/Profile'))
-import Cart from "./components/Buttons/Cart";
+import { lazy, Suspense } from "react";
+const Showproduct = lazy(() => import("./components/Product/Showproduct"));
+// import Showproduct from "./components/Product/Showproduct";
+const Cart = lazy(() => import("./components/Buttons/Cart"));
+const Profile = lazy(() => import("./components/User/Profile"));
+const Singleproduct = lazy(() => import("./components/Product/Singleproduct"));
+const Allorders = lazy(() => import("./components/Admin/Allorders"));
+const Alluser = lazy(() => import("./components/Admin/Alluser"));
+// import Cart from "./components/Buttons/Cart";
 import Login from "./components/User/Login";
-import Profile from "./components/User/Profile";
+// import Profile from "./components/User/Profile";
 import Navbar from "./components/Buttons/Navbar";
-import Singleproduct from "./components/Product/Singleproduct";
+// import Singleproduct from "./components/Product/Singleproduct";
 import Register from "./components/User/Register";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -18,11 +22,12 @@ import Checkout from "./components/Buttons/Checkout";
 import Addproduct from "./components/Admin/Addproduct";
 import Updateproduct from "./components/Admin/Updateproduct";
 import Orderconfirmation from "./components/Buttons/Orderconfirmation";
-import Allorders from "./components/Admin/Allorders";
-import Alluser from "./components/Admin/Alluser";
+// import Allorders from "./components/Admin/Allorders";
+// import Alluser from "./components/Admin/Alluser";
 import Loaading from "./components/Loaading";
 import axios from "axios";
 import Protectedroute from "./components/User/Protectedroute";
+import {PropagateLoader} from 'react-spinners'
 
 const App: React.FC = () => {
   const [Loading, setLoading] = useState(false);
@@ -52,26 +57,46 @@ const App: React.FC = () => {
     <>
       <Navbar />
       <Loaading show={Loading} />
+      <Suspense fallback={<h2><PropagateLoader /></h2>}>
+        <Routes>
+          <Route path="/" element={<Showproduct />} />
+          <Route path="/singleproduct/:id" element={<Singleproduct />} />
+          <Route
+            path="/cart"
+            element={
+              <Protectedroute>
+                <Cart />
+              </Protectedroute>
+            }
+          />
+          <Route
+            path="/profile"
+            element={
+              <Protectedroute>
+                <Profile />
+              </Protectedroute>
+            }
+          />
+          <Route
+            path="/alluserorders"
+            element={
+              <Protectedroute>
+                <Allorders />
+              </Protectedroute>
+            }
+          />
+          <Route
+            path="/alluser"
+            element={
+              <Protectedroute>
+                <Alluser />
+              </Protectedroute>
+            }
+          />
+        </Routes>
+      </Suspense>
 
       <Routes>
-        <Route path="/" element={<Showproduct />} />
-        <Route path="/singleproduct/:id" element={<Singleproduct />} />
-        <Route
-          path="/cart"
-          element={
-            <Protectedroute>
-              <Cart />
-            </Protectedroute>
-          }
-        />
-        <Route
-          path="/profile"
-          element={
-            // <Protectedroute>
-              <Profile />
-            // </Protectedroute>
-          }
-        />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route
@@ -114,25 +139,9 @@ const App: React.FC = () => {
             </Protectedroute>
           }
         />
-        <Route
-          path="/alluserorders"
-          element={
-            <Protectedroute>
-              <Allorders />
-            </Protectedroute>
-          }
-        />
-        <Route
-          path="/alluser"
-          element={
-            <Protectedroute>
-              <Alluser />
-            </Protectedroute>
-          }
-        />
       </Routes>
 
-      <ToastContainer position="top-right"  autoClose={1000} />
+      <ToastContainer position="top-right" autoClose={1000} />
     </>
   );
 };

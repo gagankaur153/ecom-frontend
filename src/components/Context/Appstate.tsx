@@ -70,10 +70,29 @@ const Appstate: React.FC<propstype> = ({ children }: propstype) => {
   useEffect(() => {
     localStorage.setItem("istheme", theme);
   }, [theme]);
+
+  const useDebounce = (value: string, delay= 1000)=>{
+    const[debounce , setDebounce] = useState(value)
+    
+      useEffect(()=>{
+     const timer: ReturnType<typeof setTimeout> = setTimeout(() => {
+          setDebounce(value)
+        }, delay);
+        return  ()=>{
+          clearTimeout(timer)
+         }
+      },[value, delay])
+
+      return debounce;
+
+  }
+
+  const debouncesearch = useDebounce(search,1000)
+ 
   // get all product
   const getallproduct = () => {
     axios
-      .get(`${url}/product/allproduct?search=${search}`)
+      .get(`${url}/product/allproduct?search=${debouncesearch}`)
       .then((res) => {
         setproducts(res.data.data);
         console.log(res);
@@ -85,7 +104,7 @@ const Appstate: React.FC<propstype> = ({ children }: propstype) => {
 
   useEffect(() => {
     getallproduct();
-  }, [search]);
+  }, [debouncesearch]);
 
   // get single product
   const fetchsingleproduct = (id: any, setproduct: any) => {
@@ -434,7 +453,7 @@ const Appstate: React.FC<propstype> = ({ children }: propstype) => {
       )
       .then((res) => {
         console.log("delete cart", res);
-        fetchcarts();
+        setcarts(res.data.data);
       })
       .catch((err) => {
         console.log(err);
