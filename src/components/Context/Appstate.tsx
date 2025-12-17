@@ -309,6 +309,7 @@ const Appstate: React.FC<propstype> = ({ children }: propstype) => {
       })
       .catch((err) => {
         console.log(err);
+        toast.error(err.response.data.message)
       });
   };
 
@@ -327,6 +328,8 @@ const Appstate: React.FC<propstype> = ({ children }: propstype) => {
       })
       .catch((err) => {
         toast.error(err?.response?.data?.message);
+        localStorage.removeItem("token");
+        window.location.href="/login"
         console.log(err);
       });
   };
@@ -359,6 +362,7 @@ const Appstate: React.FC<propstype> = ({ children }: propstype) => {
       console.log("all carts", res.data.data);
     })
     .catch((err) => {
+      toast.error(err.response.data.message)
       console.log(err);
     });
   };

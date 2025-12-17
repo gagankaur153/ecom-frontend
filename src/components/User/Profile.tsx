@@ -18,9 +18,11 @@ const Profile = () => {
       <div className=" p-6 mt-14 text-center space-y-2 ">
         <h1 className="text-3xl font-bold">{user_detail?.username}</h1>
         <h2 className="text-xl font-semibold">{user_detail?.email}</h2>
-        <h2 className="text-xl font-semibold">
+        {
+          allorders.length !== 0 && <h2 className="text-xl font-semibold">
           Total orders: {allorders.length}
         </h2>
+        }
       </div>
 
       <div className="flex justify-center">
