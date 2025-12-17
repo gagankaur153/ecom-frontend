@@ -10,7 +10,7 @@ const Alluser = () => {
   useEffect(() => {
     const allusers = () => {
       axios
-        .get(`${url}/api/alluser`)
+        .get(`${url}/api/alluser`, {withCredentials:true})
         .then((res) => {
           setusers(res.data.data);
           console.log("allusers", res.data);

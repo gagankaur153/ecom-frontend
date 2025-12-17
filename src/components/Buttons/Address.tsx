@@ -1,6 +1,4 @@
 import { ChangeEvent, useContext, useState } from "react";
-import axios from "axios";
-import { toast } from "react-toastify";
 import Appcontext from "../Context/Appcontext";
 
 const Address = () => {
