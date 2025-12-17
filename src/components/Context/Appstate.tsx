@@ -328,6 +328,8 @@ const Appstate: React.FC<propstype> = ({ children }: propstype) => {
       })
       .catch((err) => {
         toast.error(err?.response?.data?.message);
+        localStorage.removeItem("isauth");
+        localStorage.removeItem("isrole");
         localStorage.removeItem("token");
         window.location.href="/login"
         console.log(err);
