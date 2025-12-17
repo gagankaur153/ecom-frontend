@@ -9,9 +9,9 @@ const Allorders = () => {
   const [orders, setorders] = useState<any[]>([]);
   useEffect(() => {
     const alluserorders = () => {
-      const token = localStorage.getItem("token")
+    
       axios
-        .get(`${url}/payment/allorders`,{headers: { Authorization: `Bearer ${token}`} })
+        .get(`${url}/payment/allorders`,{ withCredentials: true})
         .then((res) => {
           setorders(res.data.data);
           console.log("allorderforadmin", res.data);

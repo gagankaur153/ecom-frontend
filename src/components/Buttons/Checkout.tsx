@@ -19,16 +19,13 @@ const Checkout = () => {
     oldaddress,
     oldaddresss,
     quantityDecrease,
-    dec,
-    inc,
-    remove,
     quantityIncrease,
     quantityRemove,
   } = Appstate;
   useEffect(() => {
     fetchcarts();
     oldaddresss();
-  }, [dec, inc, remove]);
+  }, []);
   console.log("old address", oldaddress);
   // quantity decrease
   const decrease = (id: any) => {

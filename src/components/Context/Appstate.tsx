@@ -24,7 +24,6 @@ const Appstate: React.FC<propstype> = ({ children }: propstype) => {
   const [oldaddress, setoldaddress] = useState(null);
   const [carts, setcarts] = useState<any>(null);
   const [role, setrole] = useState("user");
-  // const [recentlyorder , setrecentlyeorder] = useState<IState>({orderItems: []})
   const [recentlyorder, setRecentlyorder] = useState<any[]>([]);
   const [loading, setloading] = useState(false);
 
@@ -131,7 +130,6 @@ const Appstate: React.FC<propstype> = ({ children }: propstype) => {
     fileInputRef: any,
     setLoading: React.Dispatch<React.SetStateAction<boolean>>
   ): Promise<void> => {
-    const token = localStorage.getItem("token");
     const formData = new FormData();
     formData.append("title", title);
     formData.append("price", price);
@@ -142,10 +140,7 @@ const Appstate: React.FC<propstype> = ({ children }: propstype) => {
     setLoading(true);
     return privateAxios
       .post("/product/addproduct", formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-          Authorization: `Bearer ${token}`,
-        },
+       withCredentials: true
       })
       .then((res: any) => {
         setproductdetail({
@@ -190,7 +185,6 @@ const Appstate: React.FC<propstype> = ({ children }: propstype) => {
     fileInputref: any,
     setLoading: React.Dispatch<React.SetStateAction<boolean>>
   ) => {
-    const token = localStorage.getItem("token");
     const formData = new FormData();
     formData.append("title", title);
     formData.append("price", price);
@@ -201,10 +195,6 @@ const Appstate: React.FC<propstype> = ({ children }: propstype) => {
     privateAxios
       .put(`/product/updateproduct/${id}`, formData, {
         withCredentials: true,
-        headers: {
-          "Content-Type": "multipart/form-data",
-          Authorization: `Bearer ${token}`,
-        },
       })
       .then((res) => {
         setproductdetail({
@@ -281,7 +271,7 @@ const Appstate: React.FC<propstype> = ({ children }: propstype) => {
     };
     setLoading(true);
     privateAxios
-      .post("/api/login", payload)
+      .post("/api/login", payload,{withCredentials:true})
       .then((res) => {
         setdata({ email: " ", password: " " });
         setrole(res?.data?.role);
@@ -289,7 +279,6 @@ const Appstate: React.FC<propstype> = ({ children }: propstype) => {
         localStorage.setItem("isauth", "true");
         localStorage.setItem("isrole", res.data.role);
         localStorage.setItem("istheme", theme);
-        localStorage.setItem("token", res.data.token);
         setisauth("true");
         toast.success(res.data.message);
         console.log("login", res.data);
@@ -313,12 +302,9 @@ const Appstate: React.FC<propstype> = ({ children }: propstype) => {
 
   // profile
   const profile = () => {
-    const token = localStorage.getItem("token");
     axios
 
-      .get(`${url}/api/getuser`, {
-        headers: { Authorization: `Bearer ${token}` },
-      })
+      .get(`${url}/api/getuser`, {withCredentials: true})
       .then((res) => {
         setuser_detail(res.data.data);
         console.log("profile data", res.data.data);
@@ -330,12 +316,9 @@ const Appstate: React.FC<propstype> = ({ children }: propstype) => {
 
   //logout
   const logout = () => {
-    const token = localStorage.getItem("token");
     axios
       .delete(`${url}/api/logout`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
+       withCredentials: true
       })
       .then((res) => {
         toast.success(res?.data?.message);
@@ -354,12 +337,11 @@ const Appstate: React.FC<propstype> = ({ children }: propstype) => {
 
   // add to cart
   const addcart = (productid: string) => {
-    const token = localStorage.getItem("token");
     privateAxios
       .post(
         `/cart/addcart/${productid}`,
         {},
-        { headers: { Authorization: `Bearer ${token}` } }
+        { withCredentials:true }
       )
       .then((res) => {
         toast.success(res?.data?.message);
@@ -373,10 +355,9 @@ const Appstate: React.FC<propstype> = ({ children }: propstype) => {
 
   // fetch all cart
   const fetchcarts = () => {
-    const token = localStorage.getItem("token");
     axios
     .get(`${url}/cart/allcart`, {
-      headers: { Authorization: `Bearer ${token}` },
+      withCredentials: true
     })
     .then((res) => {
       setcarts(res.data.data);
@@ -390,12 +371,11 @@ const Appstate: React.FC<propstype> = ({ children }: propstype) => {
 
   // quantity decrease
   const quantityDecrease = (id: string) => {
-    const token = localStorage.getItem("token");
     privateAxios
       .put(
         `${url}/cart/decrease/${id}`,
         {},
-        { headers: { Authorization: `Bearer ${token}` } }
+        {  withCredentials: true }
       )
       .then((res) => {
         setcarts(res.data.data);
@@ -408,12 +388,11 @@ const Appstate: React.FC<propstype> = ({ children }: propstype) => {
 
   // quantity increase
   const quantityIncrease = (id: string) => {
-    const token = localStorage.getItem("token");
     privateAxios
       .put(
         `${url}/cart/increase/${id}`,
         {},
-        { headers: { Authorization: `Bearer ${token}` } }
+        {  withCredentials: true }
       )
       .then((res) => {
         setcarts(res.data.data);
@@ -426,15 +405,14 @@ const Appstate: React.FC<propstype> = ({ children }: propstype) => {
 
   // quantity remove
   const quantityRemove = (id: string) => {
-    const token = localStorage.getItem("token");
     privateAxios
       .put(
         `${url}/cart/removecart/${id}`,
         {},
-        { headers: { Authorization: `Bearer ${token}` } }
+        {withCredentials: true}
       )
       .then((res) => {
-        setcarts(res.data.data);
+        fetchcarts()
         console.log(res.data);
       })
       .catch((err) => {
@@ -444,16 +422,15 @@ const Appstate: React.FC<propstype> = ({ children }: propstype) => {
 
   //  delete cart
   const deletecart = () => {
-    const token = localStorage.getItem("token");
     privateAxios
       .put(
         `${url}/cart/deletecart`,
         {},
-        { headers: { Authorization: `Bearer ${token}` } }
+        {  withCredentials: true }
       )
       .then((res) => {
-        console.log("delete cart", res);
-        setcarts(res.data.data);
+        console.log("delete cart", res.data.data);
+        fetchcarts()
       })
       .catch((err) => {
         console.log(err);
@@ -479,7 +456,6 @@ const Appstate: React.FC<propstype> = ({ children }: propstype) => {
       }>
     >
   ) => {
-    const token = localStorage.getItem("token");
     const payload = {
       fullname,
       country,
@@ -490,7 +466,7 @@ const Appstate: React.FC<propstype> = ({ children }: propstype) => {
     };
     privateAxios
       .post("/address/add", payload, {
-        headers: { Authorization: `Bearer ${token}` },
+        withCredentials: true
       })
       .then((res) => {
         setdata({
@@ -515,10 +491,9 @@ const Appstate: React.FC<propstype> = ({ children }: propstype) => {
 
   // get old latest address
   const oldaddresss = () => {
-    const token = localStorage.getItem("token");
     axios
       .get(`${url}/address/getaddress`, {
-        headers: { Authorization: `Bearer ${token}` },
+        withCredentials: true
       })
       .then((res) => {
         setoldaddress(res.data.data[0]);
@@ -532,10 +507,9 @@ const Appstate: React.FC<propstype> = ({ children }: propstype) => {
 
   // orderconfirm page
   const userorder = () => {
-    const token = localStorage.getItem("token");
     axios
       .get(`${url}/payment/userorder`, {
-        headers: { Authorization: `Bearer ${token}` },
+        withCredentials: true
       })
       .then((res) => {
         setRecentlyorder(res.data.data[0]);
@@ -547,10 +521,9 @@ const Appstate: React.FC<propstype> = ({ children }: propstype) => {
   };
 
   const allorder = (setallorders: any) => {
-    const token = localStorage.getItem("token");
     axios
       .get(`${url}/payment/userorder`, {
-        headers: { Authorization: `Bearer ${token}` },
+        withCredentials: true
       })
       .then((res) => {
         setallorders(res.data.data);

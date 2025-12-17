@@ -4,7 +4,9 @@ import { LuFilter } from "react-icons/lu";
 import Appcontext from '../Context/Appcontext';
 
 const Home = () => {
-  const {url} = useContext(Appcontext)
+  const Appstate = useContext(Appcontext);
+  if (!Appstate) return null;
+  const {url} = Appstate
     const [data,setdata] = useState(null)
     
 

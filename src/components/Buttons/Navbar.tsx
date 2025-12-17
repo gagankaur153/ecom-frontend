@@ -10,16 +10,6 @@ const Navbar = () => {
   if (!Appstate) return null;
   const { logout, setsearch, search, isauth, role, setTheme, theme} = Appstate;
   const [isopen, setisopen] = useState(false);
-const useDebounce = (value: any, delay=3000)=>{
-  const[debounce , setDebounce] = useState(value)
-       let timer: ReturnType<typeof setTimeout>;
-       return function (){
-         clearTimeout(timer)
-     timer = setTimeout(() => {
-          setDebounce(value)
-     }, delay);
-       }
-}
 
   //theme
   const themechange = ()=>{
