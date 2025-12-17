@@ -302,9 +302,10 @@ const Appstate: React.FC<propstype> = ({ children }: propstype) => {
 
   // profile
   const profile = () => {
+    const token = localStorage.getItem("token")
     axios
 
-      .get(`${url}/api/getuser`, {withCredentials: true})
+      .get(`${url}/api/getuser`,{headers: {Authorization: `Bearer ${token}`} || {withCredentials: true}} )
       .then((res) => {
         setuser_detail(res.data.data);
         console.log("profile data", res.data.data);
