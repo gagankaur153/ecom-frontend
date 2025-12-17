@@ -109,7 +109,7 @@ const Addproduct = () => {
         <div className="flex flex-col space-y-2">
           <textarea
             id="logininput"
-            className="py-2 px-4 border rounded-xl focus:ring-1 focus:ring-blue-300"
+            className="py-2 px-4 text-black border rounded-xl focus:ring-1 focus:ring-blue-300"
             name="description"
             value={productdetail?.description || ""}
             onChange={(e) => inpputhandler(e)}
@@ -123,7 +123,7 @@ const Addproduct = () => {
             className="py-1 text-white px-6 rounded-2xl bg-purple-700 text-2xl font-semibold hover:bg-purple-600"
             onClick={(e) => submit(e)}
           >
-            {Loading ? "Loading..." : "Login"}
+            {Loading ? "Loading..." : "Add Product"}
           </button>
         </div>
       </div>

@@ -29,9 +29,10 @@ const Updateproduct = () => {
         description: product?.description,
         category: product?.category,
       });
+      setfile(product?.image)
     }
   }, [product]);
-
+  console.log("file", file)
   const inpputhandler = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
@@ -43,7 +44,9 @@ const Updateproduct = () => {
   };
 
   const filehandler = (e: any) => {
-    setfile(e.target.files[0]);
+    {
+      e.target.files &&    setfile(e.target.files[0]);
+    }
   };
   const submit = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();

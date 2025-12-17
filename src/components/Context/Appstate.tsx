@@ -44,15 +44,12 @@ const Appstate: React.FC<propstype> = ({ children }: propstype) => {
       document.documentElement.style.setProperty("--bg-color", "black");
       document.documentElement.style.setProperty("--navbg-color", "black");
       document.documentElement.style.setProperty("--text-color", "white");
-      document.documentElement.style.setProperty(
-        "--navbuttontextcolor",
-        "white"
-      );
-      document.documentElement.style.setProperty(
-        "--border",
-        "2px solid rgb(57,55,55)"
-      );
-    } else {
+      document.documentElement.style.setProperty("--navbuttontextcolor","white" ); 
+      document.documentElement.style.setProperty("--border","2px solid rgb(57,55,55)");
+      document.documentElement.style.setProperty("--bg-button-color", "rgb(75, 73, 73)")
+    } 
+    else {
+      document.documentElement.style.setProperty("--bg-button-color", " rgb(200,200,200)")
       document.documentElement.style.setProperty("--bg-color", "white");
       document.documentElement.style.setProperty("--navbg-color", "white");
       document.documentElement.style.setProperty("--text-color", "black");
@@ -151,6 +148,7 @@ const Appstate: React.FC<propstype> = ({ children }: propstype) => {
         if (fileInputRef.current) {
           fileInputRef.current.value = null;
         }
+        toast.success(res.data.data)
         getallproduct();
         console.log("add new product", res);
       })
@@ -176,7 +174,7 @@ const Appstate: React.FC<propstype> = ({ children }: propstype) => {
         title: string;
         price: string;
         description: string;
-        image: string;
+        image: any;
         category: string;
       }>
     >,
@@ -188,7 +186,9 @@ const Appstate: React.FC<propstype> = ({ children }: propstype) => {
     formData.append("price", price);
     formData.append("description", description);
     formData.append("category", category);
-    formData.append("image", file);
+    if (file instanceof File) {
+      formData.append("image", file);
+    }
     setLoading(true);
     privateAxios
       .put(`/product/updateproduct/${id}`, formData, {withCredentials: true})
@@ -204,7 +204,7 @@ const Appstate: React.FC<propstype> = ({ children }: propstype) => {
         if (fileInputref.current) {
           fileInputref.current.value = null;
         }
-        getallproduct();
+        navigate('/')
         console.log("update product", res);
       })
       .catch((err) => {

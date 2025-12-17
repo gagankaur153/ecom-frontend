@@ -11,6 +11,7 @@
     --navbg-color: white;
     --input-color: rgb(187, 176, 176);
     --navbuttontextcolor: white;
+    --bg-button-color: rgb(200, 200, 200);
 }
 
 body{
@@ -37,6 +38,9 @@ input, button, #text, h1, h2,h5 tr,td,th ,p, label   {
 .logininput{
     outline: none;
     /* background-color: var(--input-color); */
+}
+.smallbutton:hover{
+ background-color: var(--bg-button-color);
 }
 
 

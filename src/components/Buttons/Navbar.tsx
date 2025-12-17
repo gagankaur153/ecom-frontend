@@ -108,7 +108,7 @@ const Navbar = () => {
                 {buttons.map((item, index) => (
                   <NavLink
                     key={index}
-                    className=" m-2 p-1 hover:underline font-semibold w-full "
+                    className="smallbutton m-2 p-1 px-4 rounded hover:underline font-semibold w-28 "
                     to={item.link}
                     onClick={smallbuttons}
                   >
@@ -121,7 +121,7 @@ const Navbar = () => {
                 {adminbuttons.map((item, index) => (
                   <NavLink
                     key={index}
-                    className=" m-2 p-1 hover:underline font-semibold w-full "
+                    className="smallbutton m-2 p-1 px-4 rounded hover:underline font-semibold w-36 "
                     to={item.link}
                     onClick={smallbuttons}
                   >
@@ -134,7 +134,7 @@ const Navbar = () => {
             {isauth === "true" && (
               <span
                 onClick={() => logout()}
-                className=" m-2  p-1 hover:underline font-semibold "
+                className="smallbutton  px-4 m-2 w-20  rounded p-1 hover:underline cursor-pointer font-semibold "
               >
                 Logout
               </span>
@@ -174,7 +174,7 @@ const Navbar = () => {
           ) : (
             <>
             {/* <CiDark size={50} /> */}
-            <div className=" p-1"> <CiDark id="navbutton" onClick={changetheme} size={40} className="rounded-full p-1 " /></div>
+            <div className=" p-1"> <CiDark id="navbutton" onClick={themechange} size={40} className="rounded-full p-1 " /></div>
               {adminbuttons.map((item, index) => (
                 <div
                   key={index}

@@ -22,21 +22,23 @@ const Showproduct = () => {
       <div className=" min-h-screen mt-14">
         <div className="flex mx-auto p-8">
           {products && (
-            <div className=" w-full gap-6  md:gap-10 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 ">
+            <div className=" w-full gap-6 md:gap-10 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 ">
               {products.map((product: any) => (
                 <div
                   key={product._id}
-                  className="rounded-xl p-2 h-fit md:p-6  shadow-lg hover: "
+                  className="rounded-xl p-2 h-fit md:p-3  shadow-lg  "onClick={()=> console.log("parent div")}
                 >
                   <NavLink
                     to={`/singleproduct/${product._id}`}
                     className="flex p-2 m-2 rounded-xl  items-center "
                   >
-                    <img
-                      src={product.image}
-                      className="rounded-xl md:w-[200px] md:h-[200px] border border-yellow-600 "
-                      alt="..."
-                    />
+                   {
+                    product?.image &&  <img
+                    src={product.image}
+                    className="rounded-xl md:w-[200px] md:h-[200px] border border-yellow-600 "
+                    alt="..."
+                  />
+                   }
                   </NavLink>
                   <div className="md:text-xl p-2 md:mb-3">
                     <h5 className="">Title:{product.title}</h5>
@@ -49,7 +51,11 @@ const Showproduct = () => {
                       <>
                         <button
                           className="px-2 rounded  md:px-1 lg:px-2  lg:py-2 bg-yellow-600 hover:bg-yellow-800"
-                          onClick={() => addcart(product._id)}
+                          onClick={(e) => {
+                            e.stopPropagation()
+                            addcart(product._id)
+                            console.log("button tag")
+                          } }
                         >
                         Add to cart
                         </button>
