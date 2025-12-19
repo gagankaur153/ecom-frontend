@@ -26,6 +26,7 @@ const Appstate: React.FC<propstype> = ({ children }: propstype) => {
   const [role, setrole] = useState("user");
   const [recentlyorder, setRecentlyorder] = useState<any[]>([]);
   const [loading, setloading] = useState(false);
+  const [cartlength, setCartlength] = useState(0)
 
   // const url = "https://ecom-backend-payment-intigrate.onrender.com"
   // urls.js
@@ -301,7 +302,6 @@ const Appstate: React.FC<propstype> = ({ children }: propstype) => {
   // profile
   const profile = () => {
     axios
-
       .get(`${url}/api/getuser`,{withCredentials: true} )
       .then((res) => {
         setuser_detail(res.data.data);
@@ -339,19 +339,20 @@ const Appstate: React.FC<propstype> = ({ children }: propstype) => {
   // add to cart
   const addcart = (productid: string) => {
     privateAxios
-      .post(
-        `/cart/addcart/${productid}`,
-        {},
-        {withCredentials: true}
-      )
-      .then((res) => {
-        toast.success(res?.data?.message);
-        console.log("add cart", res.data);
-      })
-      .catch((err) => {
-        toast.error("please login");
-        console.log(err);
-      });
+    .post(
+      `/cart/addcart/${productid}`,
+      {},
+      {withCredentials: true}
+    )
+    .then((res) => {
+      toast.success(res?.data?.message);
+      // console.log("add cart", res.data);
+    })
+    .catch((err) => {
+      setCartlength(cartlength => cartlength +1)
+      toast.error("please login");
+      console.log(err);
+    });
   };
 
   // fetch all cart
@@ -360,7 +361,6 @@ const Appstate: React.FC<propstype> = ({ children }: propstype) => {
     .get(`${url}/cart/allcart`, {withCredentials: true})
     .then((res) => {
       setcarts(res.data.data);
-      console.log(oldaddress);
       console.log("all carts", res.data.data);
     })
     .catch((err) => {
@@ -396,7 +396,7 @@ const Appstate: React.FC<propstype> = ({ children }: propstype) => {
       )
       .then((res) => {
         setcarts(res.data.data);
-        console.log(res.data.data);
+        console.log("increase", res.data.data);
       })
       .catch((err) => {
         console.log(err);
@@ -404,16 +404,16 @@ const Appstate: React.FC<propstype> = ({ children }: propstype) => {
   };
 
   // quantity remove
-  const quantityRemove = (id: string) => {
+  const quantityRemove = ( cartid: string) => {
     privateAxios
       .put(
-        `${url}/cart/removecart/${id}`,
+        `${url}/cart/removecart/${cartid}`,
         {},
       {withCredentials: true}
       )
       .then((res) => {
-        fetchcarts()
-        console.log(res.data);
+        setcarts(res.data.data)
+        console.log("remove cart",res.data.data);
       })
       .catch((err) => {
         console.log(err);

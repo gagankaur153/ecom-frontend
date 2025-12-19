@@ -15,7 +15,7 @@ const Singleproduct = () => {
   }, [id]);
   return (
     <>
-      <div className="flex mt-16 p-8  text-white items-center">
+      <div className="flex mt-16 p-8 items-center">
         <div className="flex md:w-full justify-around gap-5 md:gap-24 m-5 ">
           <div className=" flex w-1/2  md:justify-center md:w-full">
             <img

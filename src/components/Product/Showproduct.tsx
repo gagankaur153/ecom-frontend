@@ -54,7 +54,6 @@ const Showproduct = () => {
                           onClick={(e) => {
                             e.stopPropagation()
                             addcart(product._id)
-                            console.log("button tag")
                           } }
                         >
                         Add to cart

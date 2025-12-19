@@ -11,11 +11,11 @@ const Profile = () => {
     profile();
     allorder(setallorders);
   }, []);
-  console.log("all orders", allorders);
+ 
 
   return (
     <>
-      <div className=" p-6 mt-14 text-center space-y-2 ">
+      <div className=" p-6 mt-20 text-center space-y-2 ">
         <h1 className="text-3xl font-bold">{user_detail?.username}</h1>
         <h2 className="text-xl font-semibold">{user_detail?.email}</h2>
         {

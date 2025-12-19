@@ -10,13 +10,10 @@ const Cart = () => {
     fetchcarts,
     carts,
     quantityDecrease,
-  
     quantityIncrease,
     quantityRemove,
     deletecart,
   } = Appstate;
-
-  // const memorization = useMemo(()=> fetchcarts(),[dec,inc,remove])
 
   useEffect(() => {
     fetchcarts();
@@ -30,8 +27,8 @@ const Cart = () => {
     quantityIncrease(id);
   };
 
-  const rremove = (id: any) => {
-    quantityRemove(id);
+  const rremove = ( cartid: any) => {
+    quantityRemove( cartid);
   };
 
   const btnhandler = () => {
@@ -42,16 +39,16 @@ const Cart = () => {
     deletecart();
   };
 
-  console.log("cart length", carts?.length);
-
   return (
     <>
       <div className="min-h-screen flex flex-col gap-4 mt-20 md:mt-14">
-        {carts?.item?.length === 0 ? (
+        {carts && carts?.item?.length === 0 ? (
           <>
-            <h1 className="text-center text-2xl md:text-6xl text-yellow-600 font-semibold p-12">
+           <div className="flex mt-28 justify-center h-screen">
+           <h1 className="text-center text-2xl md:text-6xl text-yellow-600 font-semibold">
               Cart is empty...
             </h1>
+           </div>
           </>
         ) : (
           <>
@@ -66,7 +63,7 @@ const Cart = () => {
               </div>
             )}
             <div className="m-5 md:flex flex-col gap-8">
-              {carts?.item.map((product: any) => (
+              {carts?.item && carts?.item.map((product: any) => (
                 <div id="border"
                   key={product._id} 
                   className=" shadow-sm rounded-md mb-4 p-4 md:flex items-center md:justify-around  "
@@ -108,12 +105,13 @@ const Cart = () => {
                     </button>
                     <button
                       className="bg-red-500 hover:bg-red-700   md:text-2xl px-2 rounded text-white font-bold"
-                      onClick={() => rremove(product?.productid?._id)}
+                      onClick={() => rremove(product?._id)}
                     >
                       Remove
                     </button>
                   </div>
                 </div>
+
               ))}
             </div>
             {carts?.item && (

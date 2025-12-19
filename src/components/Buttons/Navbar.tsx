@@ -10,6 +10,7 @@ const Navbar = () => {
   if (!Appstate) return null;
   const { logout, setsearch, search, isauth, role, setTheme, theme} = Appstate;
   const [isopen, setisopen] = useState(false);
+ 
 
   //theme
   const themechange = ()=>{
@@ -22,7 +23,6 @@ const Navbar = () => {
   }
   const smallbuttons = () => {
     setisopen((prev) => !prev);
-    console.log(isopen);
   };
 
   const buttons = [
@@ -62,7 +62,6 @@ const Navbar = () => {
       link: "/alluser",
     },
   ];
-  console.log(isauth);
   if (isauth === "false") {
     buttons.splice(0, 2);
   }
@@ -74,7 +73,7 @@ const Navbar = () => {
   return (
     <div className="max-w-8xl w-full fixed top-0 z-50 mx-auto  ">
       {/* small device navbar */}
-      <nav id="navbar" className="  md:hidden  bg-white p-1 w-full flex flex-col space-y-3  ">
+      <nav id="navbar" className="  sm:hidden  bg-white p-1 w-full flex flex-col space-y-3  ">
         <div className="text-2xl font-semibold underline">
           <NavLink to={"/"}>Mern-Ecommerce</NavLink>
         </div>
@@ -145,7 +144,7 @@ const Navbar = () => {
       {/* sticky-top  */}
 
       {/* desktop device navbar */}
-      <nav id="navbar" className="hidden w-full  md:flex px-4 py-1  items-center justify-between mx-auto">
+      <nav id="navbar" className="hidden w-full  sm:flex px-4 py-1  items-center justify-between mx-auto">
         <div className="md:text-3xl text-white font-sans hover:underline md:w-80">
           <NavLink id="text" to={"/"}>Mern Ecom</NavLink>
         </div>
@@ -168,6 +167,8 @@ const Navbar = () => {
                   className="flex p-2 items-center"
                 >
                   <NavLink id="navbutton" className="border border-zinc-500 px-3 w-24 text-center py-1 rounded-full lg:text-lg font-semibold" to={item.link}>{item.button}</NavLink>
+                 
+        
                 </div>
               ))}
             </>

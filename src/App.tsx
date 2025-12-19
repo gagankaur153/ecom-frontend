@@ -2,31 +2,24 @@ import React, { useEffect, useState } from "react";
 import { Route, Routes } from "react-router";
 import { lazy, Suspense } from "react";
 const Showproduct = lazy(() => import("./components/Product/Showproduct"));
-// import Showproduct from "./components/Product/Showproduct";
 const Cart = lazy(() => import("./components/Buttons/Cart"));
 const Profile = lazy(() => import("./components/User/Profile"));
 const Singleproduct = lazy(() => import("./components/Product/Singleproduct"));
 const Allorders = lazy(() => import("./components/Admin/Allorders"));
 const Alluser = lazy(() => import("./components/Admin/Alluser"));
-// import Cart from "./components/Buttons/Cart";
-import Login from "./components/User/Login";
-// import Profile from "./components/User/Profile";
-import Navbar from "./components/Buttons/Navbar";
-// import Singleproduct from "./components/Product/Singleproduct";
-import Register from "./components/User/Register";
+const Login = lazy(()=> import("./components/User/Login"))
+const Navbar = lazy(()=> import("./components/Buttons/Navbar"))
+const Register = lazy(()=> import ("./components/User/Register"))
+const Address = lazy(()=> import ('./components/Buttons/Address'))
+const Checkout = lazy(()=> import ('./components/Buttons/Checkout'))
+const Addproduct = lazy(()=> import('./components/Admin/Addproduct'))
+const Updateproduct = lazy(()=> import('./components/Admin/Updateproduct'))
+const Orderconfirmation = lazy(()=> import("./components/Buttons/Orderconfirmation"))
+const Protectedroute = lazy(()=> import('./components/User/Protectedroute') )
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import Address from "./components/Buttons/Address";
-import Checkout from "./components/Buttons/Checkout";
-// import {Protectedroute} from './components/User/Protectedroute'
-import Addproduct from "./components/Admin/Addproduct";
-import Updateproduct from "./components/Admin/Updateproduct";
-import Orderconfirmation from "./components/Buttons/Orderconfirmation";
-// import Allorders from "./components/Admin/Allorders";
-// import Alluser from "./components/Admin/Alluser";
 import Loaading from "./components/Loaading";
 import axios from "axios";
-import Protectedroute from "./components/User/Protectedroute";
 import {PropagateLoader} from 'react-spinners'
 
 const App: React.FC = () => {

@@ -1,9 +1,3 @@
-// import { createContext } from "react";
-
-//  const Appcontext = createContext<any | null>(null)
-
-// export default Appcontext
-
 import { createContext } from "react";
 
 interface AppContextType {
@@ -31,7 +25,7 @@ interface AppContextType {
   carts: any;
   quantityDecrease: (id: string) => void;
   quantityIncrease: (id: string) => void;
-  quantityRemove: (id: string) => void;
+  quantityRemove: (cartid: string) => void;
   addnewproduct: (...args: any[]) => void;
   userorder: () => void;
   recentlyorder: any;
@@ -39,6 +33,7 @@ interface AppContextType {
   loading: boolean;
   setloading: React.Dispatch<React.SetStateAction<boolean>>;
   url: string;
+  cartlength: Number;
 }
 const Appcontext = createContext<AppContextType | null>(null);
 
