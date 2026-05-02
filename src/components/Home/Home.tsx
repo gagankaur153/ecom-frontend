@@ -7,7 +7,7 @@ const Home = () => {
   const Appstate = useContext(Appcontext);
   if (!Appstate) return null;
   const {url} = Appstate
-    const [data,setdata] = useState(null)
+    const [data,setdata] = useState<any[]>([])
     
 
     const getallproduct = ()=>{
@@ -23,7 +23,7 @@ const Home = () => {
     useEffect(()=>{getallproduct()},[])
   return (
     <div className='mx-auto  '>
-     <div className= 'hidden md:flex w-full justify-around bg-blue-800 t md:text-lg text-white font-semibold py-5 md:py-3'>
+     <div className= 'hidden md:flex w-full justify-around bg-blue-800 md:text-lg text-white font-semibold py-5 md:py-3'>
         <p>No Filter</p>
         <p>Mobiles</p>
         <p>Laptops</p>
@@ -39,13 +39,13 @@ const Home = () => {
      <div className=' overflow-scroll p-5 h-[90vh] bg-black'>
       <div className=' bg-gray-800'>
       {
-            data && <div className='text-white  gap-2 lg:gap-4 grid grid-cols-2 md:grid-cols-3 lg:grid-cols- '>
+            data && <div className='text-white  gap-2 lg:gap-4 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4'>
             
                 {data.map((product)=>(
                   
                   <div className="card rounded-xl  h-fit bg-gray-900"  >
                  <div className='flex justify-center bg-gray-800 m-2 rounded-xl  items-center '>
-                 <img src={product.image} className="card-img-top rounded-xl border border-yellow-600 " style={{width:["150px"], height:["200px"]}} alt="..."/>
+                 <img src={product.image} className="card-img-top rounded-xl border border-yellow-600 " style={{width:"150px", height:"200px"}} alt="..."/>
                  </div>
                   <div className="card-body text-base md:text-xl">
                     <h5 className="card-title">{product.title}</h5>

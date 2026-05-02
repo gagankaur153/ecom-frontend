@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Route, Routes } from "react-router";
 import { lazy, Suspense } from "react";
 const Showproduct = lazy(() => import("./components/Product/Showproduct"));
+const Categoryproduct = lazy(() => import("./components/Product/Categoryproduct"));
 const Cart = lazy(() => import("./components/Buttons/Cart"));
 const Profile = lazy(() => import("./components/User/Profile"));
 const Singleproduct = lazy(() => import("./components/Product/Singleproduct"));
@@ -54,6 +55,7 @@ const App: React.FC = () => {
       <Suspense fallback={<h2><PropagateLoader /></h2>}>
         <Routes>
           <Route path="/" element={<Showproduct />} />
+          <Route path="/category/:category" element={<Categoryproduct />} />
           <Route path="/singleproduct/:id" element={<Singleproduct />} />
           <Route
             path="/cart"

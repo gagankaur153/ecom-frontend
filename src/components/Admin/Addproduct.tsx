@@ -91,6 +91,7 @@ const Addproduct = () => {
             value={productdetail?.category || ""}
             onChange={(e) => inpputhandler(e)}
           />
+          
         </div>
 
         {/* URL */}

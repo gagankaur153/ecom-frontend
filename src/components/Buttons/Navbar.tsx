@@ -1,4 +1,4 @@
-import { useState, useContext, useEffect } from "react";
+import { useState, useContext } from "react";
 import { IoReorderThreeOutline } from "react-icons/io5";
 import { CiDark } from "react-icons/ci";
 import { RxCross2 } from "react-icons/rx";
@@ -8,19 +8,18 @@ import Appcontext from "../Context/Appcontext";
 const Navbar = () => {
   const Appstate = useContext(Appcontext);
   if (!Appstate) return null;
-  const { logout, setsearch, search, isauth, role, setTheme, theme} = Appstate;
+  const { logout, setsearch, search, isauth, role, setTheme, theme } = Appstate;
   const [isopen, setisopen] = useState(false);
  
 
   //theme
-  const themechange = ()=>{
-    if(theme === "light"){
-  
-      setTheme("dark")
-    }else {
-      setTheme("light")
+  const themechange = () => {
+    if (theme === "light") {
+      setTheme("dark");
+    } else {
+      setTheme("light");
     }
-  }
+  };
   const smallbuttons = () => {
     setisopen((prev) => !prev);
   };
@@ -71,43 +70,58 @@ const Navbar = () => {
   }
 
   return (
-    <div className="max-w-8xl w-full fixed top-0 z-50 mx-auto  ">
+    <div className="fixed top-0 z-50 w-full">
       {/* small device navbar */}
-      <nav id="navbar" className="  sm:hidden  bg-white p-1 w-full flex flex-col space-y-3  ">
-        <div className="text-2xl font-semibold underline">
-          <NavLink to={"/"}>Mern-Ecommerce</NavLink>
+      <nav id="navbar" className="shop-nav flex w-full flex-col gap-3 px-4 py-3 sm:hidden">
+        <div className="flex items-center justify-between gap-3">
+          <NavLink
+            to={"/"}
+            className="shop-brand flex items-center gap-2 text-xl font-extrabold"
+            onClick={() => setisopen(false)}
+          >
+            <span className="shop-brand-mark flex h-9 w-9 items-center justify-center rounded-lg text-sm font-black">
+              ME
+            </span>
+            <span className="shop-brand">Mern Ecom</span>
+          </NavLink>
+          <div className="flex items-center gap-2">
+            <button
+              className="shop-nav-icon flex h-10 w-10 items-center justify-center"
+              onClick={themechange}
+              aria-label="Toggle theme"
+            >
+              <CiDark size={24} />
+            </button>
+            <button
+              className="shop-nav-icon flex h-10 w-10 items-center justify-center"
+              onClick={smallbuttons}
+              aria-label="Toggle menu"
+            >
+              {!isopen ? (
+                <IoReorderThreeOutline size={28} />
+              ) : (
+                <RxCross2 size={24} />
+              )}
+            </button>
+          </div>
         </div>
 
-        <div className=" flex justify-between gap-3 items-center ">
+        <div>
           <input
             placeholder="search product..."
-            className=" rounded-full border w-full  px-3 py-1 "
+            className="shop-search w-full rounded-full px-4 py-2 text-sm"
             value={search}
             onChange={(e) => setsearch(e.target.value)}
           />
-            <div> <CiDark size={40} className=" rounded-full p-1 cursor-pointer" onClick={themechange}/></div>
-          {!isopen ? (
-            <IoReorderThreeOutline
-              size={40}
-              className=" cursor-pointer"
-              onClick={smallbuttons}
-            />
-          ) : (
-            <RxCross2
-              size={40}
-              className=" cursor-pointer"
-              onClick={smallbuttons}
-            />
-          )}
         </div>
         {isopen && (
-          <div className=" p-2  rounded-xl flex flex-col ">
+          <div className="shop-nav-menu grid gap-2 pt-3">
             {role !== "admin" ? (
               <>
                 {buttons.map((item, index) => (
                   <NavLink
                     key={index}
-                    className="smallbutton m-2 p-1 px-4 rounded hover:underline font-semibold w-28 "
+                    className="shop-nav-link px-4 py-2 text-sm"
                     to={item.link}
                     onClick={smallbuttons}
                   >
@@ -120,7 +134,7 @@ const Navbar = () => {
                 {adminbuttons.map((item, index) => (
                   <NavLink
                     key={index}
-                    className="smallbutton m-2 p-1 px-4 rounded hover:underline font-semibold w-36 "
+                    className="shop-nav-link px-4 py-2 text-sm"
                     to={item.link}
                     onClick={smallbuttons}
                   >
@@ -131,12 +145,15 @@ const Navbar = () => {
             )}
 
             {isauth === "true" && (
-              <span
-                onClick={() => logout()}
-                className="smallbutton  px-4 m-2 w-20  rounded p-1 hover:underline cursor-pointer font-semibold "
+              <button
+                onClick={() => {
+                  logout();
+                  smallbuttons();
+                }}
+                className="shop-nav-link px-4 py-2 text-left text-sm"
               >
                 Logout
-              </span>
+              </button>
             )}
           </div>
         )}
@@ -144,58 +161,75 @@ const Navbar = () => {
       {/* sticky-top  */}
 
       {/* desktop device navbar */}
-      <nav id="navbar" className="hidden w-full  sm:flex px-4 py-1  items-center justify-between mx-auto">
-        <div className="md:text-3xl text-white font-sans hover:underline md:w-80">
-          <NavLink id="text" to={"/"}>Mern Ecom</NavLink>
+      <nav id="navbar" className="shop-nav hidden w-full items-center justify-between gap-4 px-4 py-3 sm:flex lg:px-10">
+        <div className="min-w-fit">
+          <NavLink
+            to={"/"}
+            className="shop-brand flex items-center gap-3 text-xl font-extrabold md:text-2xl"
+          >
+            <span className="shop-brand-mark flex h-10 w-10 items-center justify-center rounded-lg text-sm font-black">
+              ME
+            </span>
+            <span className="shop-brand hidden md:inline">Mern Ecom</span>
+          </NavLink>
         </div>
-        <div className=" md:w-full flex px-7 ">
-          <input id="input"
+        <div className="flex w-full max-w-2xl">
+          <input
             type="search"
             placeholder="search products..."
-            className="input md:w-full rounded-full text-md bg-zinc-80  px-5 border"
+            className="shop-search w-full rounded-full px-5 py-2 text-sm md:text-base"
             value={search}
             onChange={(e) => setsearch(e.target.value)}
           />
         </div>
-        <div className="flex gap-4">
+        <div className="flex min-w-fit items-center gap-2">
           {role !== "admin" ? (
             <>
-            <div className=" p-1"> <CiDark id="navbutton" onClick={themechange} size={40} className="rounded-full p-1 " /></div>
+              <button
+                className="shop-nav-icon flex h-10 w-10 items-center justify-center"
+                onClick={themechange}
+                aria-label="Toggle theme"
+              >
+                <CiDark size={24} />
+              </button>
               {buttons.map((item, index) => (
-                <div
+                <NavLink
                   key={index}
-                  className="flex p-2 items-center"
+                  className="shop-nav-link px-4 py-2 text-center text-sm"
+                  to={item.link}
                 >
-                  <NavLink id="navbutton" className="border border-zinc-500 px-3 w-24 text-center py-1 rounded-full lg:text-lg font-semibold" to={item.link}>{item.button}</NavLink>
-                 
-        
-                </div>
+                  {item.button}
+                </NavLink>
               ))}
             </>
           ) : (
             <>
-            {/* <CiDark size={50} /> */}
-            <div className=" p-1"> <CiDark id="navbutton" onClick={themechange} size={40} className="rounded-full p-1 " /></div>
+              <button
+                className="shop-nav-icon flex h-10 w-10 items-center justify-center"
+                onClick={themechange}
+                aria-label="Toggle theme"
+              >
+                <CiDark size={24} />
+              </button>
               {adminbuttons.map((item, index) => (
-                <div
+                <NavLink
                   key={index}
-                  className="flex p-2 items-center"
+                  className="shop-nav-link px-4 py-2 text-center text-sm"
+                  to={item.link}
                 >
-                  <NavLink id="navbutton"   className="border text-center border-zinc-500 px-3 py-1 rounded-full w-32 font-semibold"to={item.link}>{item.button}</NavLink>
-                </div>
+                  {item.button}
+                </NavLink>
               ))}
             </>
           )}
 
           {isauth === "true" && (
-            <div className="p-2 flex items-center">
-              <button id="navbutton"
+            <button
               onClick={() => logout()}
-              className="border border-zinc-500 px-3 py-1 rounded-full lg:text-lg font-semibold"
+              className="shop-nav-link px-4 py-2 text-sm"
             >
               Logout
             </button>
-            </div>
           )}
         </div>
       </nav>

@@ -31,7 +31,7 @@ const Appstate: React.FC<propstype> = ({ children }: propstype) => {
   // const url = "https://ecom-backend-payment-intigrate.onrender.com"
   // urls.js
   const url = window.location.origin.includes("localhost")
-    ? "http://localhost:4000" // local backend
+    ? "http://localhost:3000" // local backend
     :
     "https://ecom-backend-tdn9.onrender.com"; // deployed backend
 
@@ -561,6 +561,7 @@ const Appstate: React.FC<propstype> = ({ children }: propstype) => {
         loading,
         setloading,
         url,
+        cartlength
       }}
     >
       {children}

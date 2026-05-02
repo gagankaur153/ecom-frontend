@@ -15,49 +15,59 @@ const Singleproduct = () => {
   }, [id]);
   return (
     <>
-      <div className="flex mt-16 p-8 items-center">
-        <div className="flex md:w-full justify-around gap-5 md:gap-24 m-5 ">
-          <div className=" flex w-1/2  md:justify-center md:w-full">
-            <img
-              className=" h-[200px] w-[150px] md:w-[250px] md:h-[290px] rounded-xl"
-              src={product.image}
-              alt=""
-            />
+      <div className="shop-page mt-14 min-h-screen px-4 py-10 lg:px-10">
+        <div className="shop-card mx-auto grid max-w-6xl overflow-hidden md:grid-cols-2">
+          <div className="shop-image-box flex min-h-[320px] items-center justify-center p-6 md:min-h-[520px]">
+            {product?.image && (
+              <img
+                className="max-h-[460px] w-full object-contain"
+                src={product.image}
+                alt={product.title}
+              />
+            )}
           </div>
-          <div className="  flex flex-col w-1/2 md:w-full p-2 space-y-3 md:space-y-6">
-            <p className="md:text-4xl md:mt-7 font-medium">
-              Title: {product.title}
+
+          <div className="flex flex-col justify-center p-5 md:p-8 lg:p-10">
+            <p className="shop-eyebrow text-sm font-semibold uppercase">
+              Product details
             </p>
-            <p className=" md:text-xl mx-auto h-[150px] word-spacing-[5px] md:h-[100px] overflow-hidden md:overflow-visible font-normal md:ml-4 md:mr-4">
-              {" "}
-              Desciption: {product.description}
+            <h1 className="shop-title mt-3 text-3xl font-bold md:text-5xl">
+              {product.title}
+            </h1>
+            <p className="shop-description mt-5 text-base leading-7 md:text-lg">
+              {product.description}
             </p>
-            <p className="md:text-3xl  text-center  w-full">
-              Price: {product.price}
+            <p className="shop-price mt-6 text-3xl font-bold">
+              Rs. {product.price}
             </p>
-            <div className=" flex md:justify-around w-full gap-1 md:gap-5 ">
+            <div className="mt-7 flex flex-col gap-3 sm:flex-row">
               <NavLink
                 to={"/cart"}
-                className="bg-red-600 hover:bg-red-800 font-semibold  text-sm px-1 md:px-2 py-1 md:text-lg text-white  rounded"
+                className="shop-primary-btn px-5 py-3 text-center text-sm md:text-base"
               >
                 Buy Now
               </NavLink>
               <button
-                className="bg-yellow-500 hover:bg-yellow-700 font-semibold nd:text-lg text-sm px-1 md:px-2 py-1 text-black  rounded"
+                className="shop-warm-btn px-5 py-3 text-sm md:text-base"
                 onClick={() => addcart(product._id)}
               >
-                Add TO Cart
+                Add To Cart
               </button>
             </div>
           </div>
         </div>
-      </div>
 
-      <div className="m-4">
-        <h1 className=" text-white text-2xl font-semibold md:text-4xl text-center">
-          Related Products
-        </h1>
-        <Relatedproduct category={product?.category} />
+        <div className="mx-auto mt-12 max-w-7xl">
+          <div className="mb-5">
+            <p className="shop-eyebrow text-sm font-semibold uppercase">
+              More from this category
+            </p>
+            <h2 className="shop-title mt-2 text-2xl font-bold md:text-4xl">
+              Related Products
+            </h2>
+          </div>
+          <Relatedproduct category={product?.category} />
+        </div>
       </div>
     </>
   );
