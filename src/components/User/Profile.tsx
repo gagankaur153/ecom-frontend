@@ -14,19 +14,23 @@ const Profile = () => {
  
 
   return (
-    <>
-      <div className=" p-6 mt-20 text-center space-y-2 ">
-        <h1 className="text-3xl font-bold">{user_detail?.username}</h1>
-        <h2 className="text-xl font-semibold">{user_detail?.email}</h2>
-        {
-          allorders.length !== 0 && <h2 className="text-xl font-semibold">
-          Total orders: {allorders.length}
-        </h2>
-        }
-      </div>
+    <div className="min-h-screen px-4 pt-28 pb-8" style={{ backgroundColor: "var(--bg-color)" }}>
+        <div id="border" className="mx-auto max-w-2xl p-6 text-center shadow-sm">
+          <h1 className="break-words text-3xl font-bold">
+            {user_detail?.username || "User"}
+          </h1>
+          <h2 className="mt-2 break-all text-xl font-semibold">
+            {user_detail?.email || "Email not available"}
+          </h2>
+          {allorders.length !== 0 && (
+            <h2 className="mt-2 text-xl font-semibold">
+              Total orders: {allorders.length}
+            </h2>
+          )}
+        </div>
 
-      <div className="flex justify-center">
-        <div className="w-[80%]">
+      <div className="mt-8 flex justify-center">
+        <div className="w-full max-w-6xl">
           {allorders.map((item: any, index) => (
             <div
               key={index}
@@ -130,7 +134,7 @@ const Profile = () => {
           ))}
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

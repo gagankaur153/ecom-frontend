@@ -1,18 +1,32 @@
 import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router";
-import { NavLink } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Appcontext from "../Context/Appcontext";
 import Relatedproduct from "./Relatedproduct";
+
 const Singleproduct = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
   const Appstate = useContext(Appcontext);
   if (!Appstate) return null;
-  const { fetchsingleproduct, addcart } = Appstate;
+  const { fetchsingleproduct, addcart, isauth } = Appstate;
+
 
   const [product, setproduct] = useState<any>("");
   useEffect(() => {
     fetchsingleproduct(id, setproduct);
   }, [id]);
+
+  const buyNow = () => {
+    if (isauth !== "true") {
+      navigate("/login");
+      return;
+    }
+
+    addcart(product._id);
+    navigate("/cart");
+  };
+
   return (
     <>
       <div className="shop-page mt-14 min-h-screen px-4 py-10 lg:px-10">
@@ -41,12 +55,12 @@ const Singleproduct = () => {
               Rs. {product.price}
             </p>
             <div className="mt-7 flex flex-col gap-3 sm:flex-row">
-              <NavLink
-                to={"/cart"}
+              <button
                 className="shop-primary-btn px-5 py-3 text-center text-sm md:text-base"
+                onClick={buyNow}
               >
                 Buy Now
-              </NavLink>
+              </button>
               <button
                 className="shop-warm-btn px-5 py-3 text-sm md:text-base"
                 onClick={() => addcart(product._id)}

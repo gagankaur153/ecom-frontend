@@ -12,6 +12,8 @@ const Navbar = () => {
   const [isopen, setisopen] = useState(false);
  
 
+
+
   //theme
   const themechange = () => {
     if (theme === "light") {
@@ -28,6 +30,7 @@ const Navbar = () => {
     {
       button: "Cart",
       link: "/cart",
+
     },
     {
       button: "Profile",

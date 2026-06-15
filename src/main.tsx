@@ -4,10 +4,16 @@ import App from "./App";
 import { BrowserRouter } from "react-router";
 import Appstate from "./components/Context/Appstate.js";
 
+
+
 createRoot(document.getElementById("root")!).render(
-  <BrowserRouter>
+
+     <BrowserRouter>
     <Appstate>
       <App />
     </Appstate>
   </BrowserRouter>
+
+
+ 
 );

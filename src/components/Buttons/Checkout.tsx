@@ -22,6 +22,8 @@ const Checkout = () => {
     quantityIncrease,
     quantityRemove,
   } = Appstate;
+  const hasOldAddress = Boolean(oldaddress?._id);
+
   useEffect(() => {
     fetchcarts();
     oldaddresss();
@@ -44,6 +46,11 @@ const Checkout = () => {
 
   // procced to payment gateway button
   const handlepayment = () => {
+    if (!hasOldAddress) {
+      navigate("/shipping");
+      return;
+    }
+
     axios
       .post(`${url}/payment/checkout`, {
         amount: carts?.totalamount,
@@ -115,7 +122,7 @@ const Checkout = () => {
   };
 
   return (
-    <div className=" m-2 md:mt-16 mt-20 p-4">
+    <div className=" min-h-screen m-2 md:mt-16 mt-20 p-4">
       <div className=" p-2">
         {carts?.item.length == 0 ? (
           <div className="md:text-6xl text-2xl font-bold text-center flex mt-14 text-yellow-500">
@@ -229,24 +236,38 @@ const Checkout = () => {
                 <div className="border border-blue-600 text-xl font-bold  text-center p-4 ">
                   <h1>Shipping Address</h1>
                 </div>
-                <div className="p-4 text-lg md:text-xl md:space-y-7  font-semibold">
-                  <h2>Name: {oldaddress?.fullname}</h2>
-                  <h2>Country: {oldaddress?.country}</h2>
-                  <h2>State: {oldaddress?.state}</h2>
-                  <h2>City: {oldaddress?.city}</h2>
-                  <h2>Pincode: {oldaddress?.pincode}</h2>
-                  <h2>NearBy: {oldaddress?.address}</h2>
-                </div>
+                {hasOldAddress ? (
+                  <div className="p-4 text-lg md:text-xl md:space-y-7  font-semibold">
+                    <h2>Name: {oldaddress?.fullname}</h2>
+                    <h2>Country: {oldaddress?.country}</h2>
+                    <h2>State: {oldaddress?.state}</h2>
+                    <h2>City: {oldaddress?.city}</h2>
+                    <h2>Pincode: {oldaddress?.pincode}</h2>
+                    <h2>NearBy: {oldaddress?.address}</h2>
+                  </div>
+                ) : (
+                  <div className="p-4 text-center text-lg font-semibold">
+                    <h2>No old address found</h2>
+                    <button
+                      className="mt-4 rounded bg-blue-600 px-4 py-2 text-white"
+                      onClick={() => navigate("/shipping")}
+                    >
+                      Add Address
+                    </button>
+                  </div>
+                )}
               </div>
             </div>
-            <div className=" flex  justify-center mt-8 ">
-              <button
-                className="md:text-lg px-3 py-2 text-white rounded bg-gray-800 hover:bg-gray-900 font-bold "
-                onClick={handlepayment}
-              >
-                Proceed To Pay
-              </button>
-            </div>
+            {hasOldAddress && (
+              <div className=" flex  justify-center mt-8 ">
+                <button
+                  className="md:text-lg px-3 py-2 text-white rounded bg-gray-800 hover:bg-gray-900 font-bold "
+                  onClick={handlepayment}
+                >
+                  Proceed To Pay
+                </button>
+              </div>
+            )}
           </div>
         )}
       </div>

@@ -40,7 +40,7 @@ const Address = () => {
   };
 
   return (
-    <div className="md:mt-16 mt-20 p-8 max-w-8xl flex justify-center text-white items-center ">
+    <div className="md:mt-16 min-h-screen mt-20 p-8 max-w-8xl flex justify-center text-white items-center ">
       <div id="border" className="border shadow-2xl rounded  w-full  p-8 mx-auto ">
         <div className="text-center mb-8 text-3xl md:text-4xl font-bold">
           <h1>Shipping Address</h1>

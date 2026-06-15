@@ -2,10 +2,13 @@ import { useContext, useEffect} from "react";
 import { useNavigate } from "react-router-dom";
 import Appcontext from "../Context/Appcontext";
 
+
+
 const Cart = () => {
   const navigate = useNavigate();
   const Appstate = useContext(Appcontext);
   if (!Appstate) return null;
+
   const {
     fetchcarts,
     carts,

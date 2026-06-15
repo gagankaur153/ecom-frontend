@@ -22,7 +22,8 @@ const Alluser = () => {
     allusers();
   }, []);
   return (
-    <div className="text-white">
+   <div className=" min-h-screen">
+     <div className="text-white">
       {users.length == 0 ? (
         <h1>No User register</h1>
       ) : (
@@ -58,6 +59,7 @@ const Alluser = () => {
         </div>
       )}
     </div>
+   </div>
   );
 };
 

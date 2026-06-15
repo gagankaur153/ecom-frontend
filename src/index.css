@@ -139,10 +139,12 @@ input, button, #text, h1, h2,h5 tr,td,th ,p, label   {
 
 .shop-nav {
     color: var(--text-color);
-    background: color-mix(in srgb, var(--bg-color) 92%, transparent);
-    border-bottom: 1px solid rgba(148, 163, 184, 0.28);
-    box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
-    backdrop-filter: blur(14px);
+    background:
+        linear-gradient(90deg, rgba(37, 99, 235, 0.1), transparent 38%, rgba(245, 158, 11, 0.1)),
+        color-mix(in srgb, var(--navbg-color) 96%, transparent);
+    border-bottom: 2px solid rgba(37, 99, 235, 0.28);
+    box-shadow: 0 14px 36px rgba(15, 23, 42, 0.24);
+    backdrop-filter: blur(16px);
 }
 
 .shop-brand,
@@ -155,12 +157,13 @@ input, button, #text, h1, h2,h5 tr,td,th ,p, label   {
 .shop-brand {
     color: var(--text-color);
     letter-spacing: 0;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.2);
 }
 
 .shop-brand-mark {
     color: white;
-    background: rgb(29, 78, 216);
-    box-shadow: 0 8px 22px rgba(37, 99, 235, 0.24);
+    background: linear-gradient(135deg, rgb(37, 99, 235), rgb(245, 158, 11));
+    box-shadow: 0 10px 24px rgba(37, 99, 235, 0.34);
 }
 
 .shop-search {
@@ -180,31 +183,105 @@ input, button, #text, h1, h2,h5 tr,td,th ,p, label   {
     border: 1px solid rgba(148, 163, 184, 0.4);
     border-radius: 999px;
     font-weight: 700;
-    transition: background 160ms ease, color 160ms ease, border-color 160ms ease;
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.12);
+    transition: background 160ms ease, color 160ms ease, border-color 160ms ease, box-shadow 160ms ease, transform 160ms ease;
 }
 
 .shop-nav-link:hover,
 .shop-nav-link.active {
     color: white;
-    background: rgb(29, 78, 216);
-    border-color: rgb(29, 78, 216);
+    background: linear-gradient(135deg, rgb(29, 78, 216), rgb(37, 99, 235));
+    border-color: rgb(37, 99, 235);
+    box-shadow: 0 10px 22px rgba(37, 99, 235, 0.28);
+    transform: translateY(-1px);
 }
 
 .shop-nav-icon {
     color: var(--text-color);
     border: 1px solid rgba(148, 163, 184, 0.4);
     border-radius: 999px;
-    transition: background 160ms ease, transform 160ms ease;
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.12);
+    transition: background 160ms ease, border-color 160ms ease, box-shadow 160ms ease, transform 160ms ease;
 }
 
 .shop-nav-icon:hover {
     background: rgba(37, 99, 235, 0.1);
+    border-color: rgba(37, 99, 235, 0.55);
+    box-shadow: 0 8px 18px rgba(37, 99, 235, 0.16);
     transform: translateY(-1px);
 }
 
 .shop-nav-menu {
-    border-top: 1px solid rgba(148, 163, 184, 0.25);
+    border-top: 1px solid rgba(37, 99, 235, 0.24);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
 }
 
+.auth-page {
+    background:
+        radial-gradient(circle at top left, rgba(37, 99, 235, 0.1), transparent 30rem),
+        radial-gradient(circle at bottom right, rgba(245, 158, 11, 0.12), transparent 28rem),
+        var(--bg-color);
+}
 
+.auth-card {
+    color: var(--text-color);
+    background: color-mix(in srgb, var(--bg-color) 96%, transparent);
+    border: 1px solid rgba(148, 163, 184, 0.36);
+    border-radius: 8px;
+    box-shadow: 0 22px 55px rgba(15, 23, 42, 0.16);
+    backdrop-filter: blur(12px);
+}
 
+.auth-card h1,
+.auth-card p,
+.auth-card label,
+.auth-card span {
+    background: transparent;
+}
+
+.auth-copy {
+    color: rgb(100, 116, 139);
+}
+
+.auth-field {
+    background: transparent;
+}
+
+.auth-input-wrap {
+    color: var(--text-color);
+    background: rgba(248, 250, 252, 0.9);
+    border: 1px solid rgba(148, 163, 184, 0.5);
+    border-radius: 8px;
+    transition: border-color 160ms ease, box-shadow 160ms ease;
+}
+
+.auth-input-wrap:focus-within {
+    border-color: rgba(37, 99, 235, 0.78);
+    box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.12);
+}
+
+.auth-input-wrap input {
+    color: rgb(15, 23, 42);
+    background: transparent;
+    outline: none;
+}
+
+.auth-icon {
+    color: rgb(100, 116, 139);
+    background: transparent;
+}
+
+.auth-eye-btn {
+    color: rgb(71, 85, 105);
+    background: transparent;
+}
+
+.auth-error {
+    color: rgb(220, 38, 38);
+    background: transparent;
+}
+
+.auth-link {
+    color: rgb(29, 78, 216);
+    background: transparent;
+}

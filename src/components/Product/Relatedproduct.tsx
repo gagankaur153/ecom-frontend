@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import Appcontext from "../Context/Appcontext";
 import { NavLink } from "react-router";
+
 type categorytype = {
   category: string;
 };
@@ -10,6 +11,7 @@ const Relatedproduct = ({ category }: categorytype) => {
   if (!Appstate) return null;
   const { products, addcart } = Appstate;
   const [realtedprodcts, setrealtedproduct] = useState([]);
+
   useEffect(() => {
     setrealtedproduct(
       products?.filter(
@@ -45,7 +47,8 @@ const Relatedproduct = ({ category }: categorytype) => {
                 </p>
                 <div className="pt-3">
                   <button
-                    onClick={() => addcart(product._id)}
+                    onClick={() => {addcart(product._id);
+                    }}
                     className="shop-primary-btn w-full px-3 py-2 text-sm"
                   >
                     Add to cart

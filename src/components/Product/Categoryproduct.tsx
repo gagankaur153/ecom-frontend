@@ -2,9 +2,11 @@ import { useContext, useEffect, useMemo } from "react";
 import { NavLink, useParams } from "react-router";
 import Appcontext from "../Context/Appcontext";
 
+
 const Categoryproduct = () => {
   const { category } = useParams();
   const Appstate = useContext(Appcontext);
+
   if (!Appstate) return null;
 
   const { products, addcart, role, getallproduct } = Appstate;
@@ -80,7 +82,8 @@ const Categoryproduct = () => {
                   {role !== "admin" ? (
                     <button
                       className="shop-primary-btn w-full px-3 py-2 text-sm"
-                      onClick={() => addcart(product._id)}
+                      onClick={() => {addcart(product._id);
+                      }}
                     >
                       Add to cart
                     </button>

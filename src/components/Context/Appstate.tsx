@@ -43,7 +43,7 @@ const Appstate: React.FC<propstype> = ({ children }: propstype) => {
   useEffect(() => {
     if (theme === "dark") {
       document.documentElement.style.setProperty("--bg-color", "black");
-      document.documentElement.style.setProperty("--navbg-color", "black");
+      document.documentElement.style.setProperty("--navbg-color", "rgb(17, 24, 39)");
       document.documentElement.style.setProperty("--text-color", "white");
       document.documentElement.style.setProperty("--navbuttontextcolor","white" ); 
       document.documentElement.style.setProperty("--border","2px solid rgb(57,55,55)");
@@ -492,11 +492,19 @@ const Appstate: React.FC<propstype> = ({ children }: propstype) => {
     axios
       .get(`${url}/address/getaddress`,{ withCredentials: true})
       .then((res) => {
-        setoldaddress(res.data.data[0]);
+        const latestAddress = res.data.data?.[0];
+        if (!latestAddress) {
+          setoldaddress(null);
+          toast.error("No old address found");
+          return;
+        }
+        setoldaddress(latestAddress);
         navigate("/checkout");
         console.log(res.data);
       })
       .catch((err) => {
+        setoldaddress(null);
+        toast.error(err?.response?.data?.message || "No old address found");
         console.log(err);
       });
   };

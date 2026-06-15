@@ -1,7 +1,7 @@
 import { ChangeEvent, FormEvent, useContext, useState } from "react";
-import { NavLink } from "react-router";
+import { NavLink } from "react-router-dom";
 import Appcontext from "../Context/Appcontext";
-import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { FaEnvelope, FaEye, FaEyeSlash, FaLock, FaUser } from "react-icons/fa";
 
 type IState = {
   username: string;
@@ -18,11 +18,10 @@ const Register = (): React.JSX.Element => {
     email: "",
     password: "",
   });
-  const [display, setdisplay] = useState<Boolean>(false);
   const [erroremail, seterroremail] = useState("");
   const [errorpassword, seterrorpassword] = useState("");
-  const [Loading, setLoading] = useState<Boolean>(false);
-  const [passwordshow, setPasswordshow] = useState<Boolean>(false);
+  const [Loading, setLoading] = useState<boolean>(false);
+  const [passwordshow, setPasswordshow] = useState<boolean>(false);
 
   const emailregex = /^[a-z0-9#_$]+@gmail\.com$/;
   const passwordregex =
@@ -30,28 +29,26 @@ const Register = (): React.JSX.Element => {
 
   const inputhandle = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    setdata({
+    const nextData = {
       ...data,
       [name]: value,
-    });
+    };
+    setdata(nextData);
+
     if (name === "email") {
       if (!emailregex.test(value)) {
-        setdisplay(true);
-        seterroremail("email format is youremail@gmail.com");
+        seterroremail("Use a valid Gmail address.");
       } else {
-        setdisplay(false);
-        seterroremail(" ");
+        seterroremail("");
       }
     }
     if (name === "password") {
       if (!passwordregex.test(value)) {
-        setdisplay(true);
         seterrorpassword(
-          "Password must be contain 8-12 character & 1 captial letter & 1 number & 1 special symbol"
+          "Use 8-12 characters with uppercase, number and symbol."
         );
       } else {
-        setdisplay(false);
-        seterrorpassword(" ");
+        seterrorpassword("");
       }
     }
   };
@@ -63,100 +60,102 @@ const Register = (): React.JSX.Element => {
   const handlepasswordicon = () => {
     setPasswordshow(!passwordshow);
   };
+  const hasValidationError = Boolean(erroremail || errorpassword);
 
   return (
     <>
-      <div className=" mt-14 h-[90vh] flex items-center justify-center">
+      <div className="auth-page flex min-h-screen items-center justify-center px-4 pb-10 pt-28">
         <form
           onSubmit={handleform}
-          className="shadow-2xl mt-10 border w-full max-w-md rounded-2xl p-7 space-y-6"
+          className="auth-card w-full max-w-md p-6 md:p-8"
         >
-          <div className="text-center text-2xl md:text-4xl font-bold mb-9">
-            <h1>Create Account</h1>
+          <div className="mb-8 text-center">
+            <h1 className="text-3xl font-bold md:text-4xl">Create Account</h1>
+            <p className="auth-copy mt-2 text-sm">
+              Join us and start shopping faster.
+            </p>
           </div>
 
-          {/* username */}
-          <div className="flex flex-col ">
-            <input
-              id="logininput"
-              type="string"
-              name="username"
-              value={data.username}
-              onChange={inputhandle}
-              className=" py-3 border rounded-xl px-4 focus:outline-none "
-              placeholder="enter username"
-            />
-          </div>
-
-          {/* email address */}
-          <div className="flex flex-col ">
-            <input
-              id="logininput"
-              type="email"
-              name="email"
-              value={data.email}
-              onChange={inputhandle}
-              className="py-3 border rounded-xl px-4"
-              placeholder="name@example.com"
-            />
-            {display && <h2 className="text-md text-red-500">{erroremail}</h2>}
-          </div>
-
-          {/* password */}
-          <div className=" flex flex-col">
-            <div className="relative">
+          <div className="auth-field mb-5">
+            <label className="mb-2 block text-sm font-semibold">Username</label>
+            <div className="auth-input-wrap flex items-center gap-3 px-4">
+              <FaUser className="auth-icon" />
               <input
-                id="logininput"
-                type={passwordshow ? "string" : "password"}
-                name="password"
-                value={data.password}
+                type="text"
+                name="username"
+                value={data.username}
                 onChange={inputhandle}
-                className="py-3 rounded-xl w-full px-4 relative border"
-                placeholder="enter password"
+                className="w-full py-3"
+                placeholder="Enter username"
+                autoComplete="username"
               />
-              {passwordshow ? (
-                <FaEye
-                  size={30}
-                  className="absolute p-1 rounded bottom-2 right-5 text-zinc-800 "
-                  onClick={handlepasswordicon}
-                />
-              ) : (
-                <FaEyeSlash
-                  size={30}
-                  className="absolute p-1 rounded bottom-2 right-5 text-zinc-800 "
-                  onClick={handlepasswordicon}
-                />
-              )}
             </div>
+          </div>
 
-            {display && (
-              <h2 className="text-md text-red-500">{errorpassword}</h2>
+          <div className="auth-field mb-5">
+            <label className="mb-2 block text-sm font-semibold">Email</label>
+            <div className="auth-input-wrap flex items-center gap-3 px-4">
+              <FaEnvelope className="auth-icon" />
+              <input
+                type="email"
+                name="email"
+                value={data.email}
+                onChange={inputhandle}
+                className="w-full py-3"
+                placeholder="name@gmail.com"
+                autoComplete="email"
+              />
+            </div>
+            {erroremail && (
+              <p className="auth-error mt-2 text-sm font-medium">{erroremail}</p>
             )}
           </div>
 
-          {/* button */}
-          <div className=" w-full flex container justify-center ">
-            <button
-              type="submit"
-              disabled={display === true}
-              className={`btn btn-primary mt-3 px-4 w-full lg:px-14 py-2 text-lg rounded-lg font-semibold 
-    ${
-      display
-        ? "bg-gray-400 cursor-not-allowed text-gray-700"
-        : "bg-sky-700 hover:bg-sky-900text-white"
-    }`}
-            >
-              {Loading ? "Please wait..." : "Register"}
-            </button>
+          <div className="auth-field mb-7">
+            <label className="mb-2 block text-sm font-semibold">Password</label>
+            <div className="auth-input-wrap flex items-center gap-3 px-4">
+              <FaLock className="auth-icon" />
+              <input
+                type={passwordshow ? "text" : "password"}
+                name="password"
+                value={data.password}
+                onChange={inputhandle}
+                className="w-full py-3"
+                placeholder="Enter password"
+                autoComplete="new-password"
+              />
+              <button
+                type="button"
+                className="auth-eye-btn"
+                onClick={handlepasswordicon}
+                aria-label={passwordshow ? "Hide password" : "Show password"}
+              >
+                {passwordshow ? <FaEye size={18} /> : <FaEyeSlash size={18} />}
+              </button>
+            </div>
+
+            {errorpassword && (
+              <p className="auth-error mt-2 text-sm font-medium">
+                {errorpassword}
+              </p>
+            )}
           </div>
-          <div className="mb- w-full  flex flex-col text-sm  items-center justify-center mt-2">
-            <p>Already account</p>
+
+          <button
+            type="submit"
+            disabled={hasValidationError || Loading}
+            className="shop-primary-btn w-full px-5 py-3 text-base disabled:cursor-not-allowed disabled:opacity-70"
+          >
+            {Loading ? "Please wait..." : "Register"}
+          </button>
+
+          <div className="mt-7 flex items-center justify-center gap-2 text-sm">
+            <p className="auth-copy">Already have an account?</p>
             <NavLink
               to={"/login"}
-              className="hover:underline text-blue-500 font-semibold text-md
-  "
+              className="auth-link font-semibold hover:underline"
             >
-              Signup
+              Sign In
             </NavLink>
           </div>
         </form>
