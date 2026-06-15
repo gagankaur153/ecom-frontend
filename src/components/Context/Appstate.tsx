@@ -92,7 +92,6 @@ const Appstate: React.FC<propstype> = ({ children }: propstype) => {
       .get(`${url}/product/allproduct?search=${debouncesearch}`)
       .then((res) => {
         setproducts(res.data.data);
-        console.log(res);
       })
       .catch((err) => {
         console.log(err);
@@ -109,7 +108,6 @@ const Appstate: React.FC<propstype> = ({ children }: propstype) => {
       .get(`${url}/product/singleproduct/${id}`)
       .then((res) => {
         setproduct(res.data.data);
-        console.log("fetch single product", res.data);
       })
       .catch((err) => {
         console.log(err);
@@ -151,7 +149,6 @@ const Appstate: React.FC<propstype> = ({ children }: propstype) => {
         }
         toast.success(res.data.data)
         getallproduct();
-        console.log("add new product", res);
       })
       .catch((err: any) => {
         console.log(err);
@@ -206,7 +203,6 @@ const Appstate: React.FC<propstype> = ({ children }: propstype) => {
           fileInputref.current.value = null;
         }
         navigate('/')
-        console.log("update product", res);
       })
       .catch((err) => {
         console.log(err);
@@ -242,7 +238,6 @@ const Appstate: React.FC<propstype> = ({ children }: propstype) => {
         setdata({ username: " ", email: " ", password: " " });
         toast.success(res?.data?.message);
         navigate("/login");
-        console.log("register", res);
       })
       .catch((err) => {
         toast.error(err?.response?.data?.message);
@@ -278,7 +273,6 @@ const Appstate: React.FC<propstype> = ({ children }: propstype) => {
         localStorage.setItem("istheme", theme);
         setisauth("true");
         toast.success(res.data.message);
-        console.log("login", res.data);
       })
       .catch((err) => {
         toast.error(err?.response?.data?.message);
@@ -305,7 +299,6 @@ const Appstate: React.FC<propstype> = ({ children }: propstype) => {
       .get(`${url}/api/getuser`,{withCredentials: true} )
       .then((res) => {
         setuser_detail(res.data.data);
-        console.log("profile data", res.data.data);
       })
       .catch((err) => {
         console.log(err);
@@ -324,7 +317,6 @@ const Appstate: React.FC<propstype> = ({ children }: propstype) => {
         localStorage.removeItem("token");
         setisauth("false");
         setrole(" ");
-        console.log("logout", res);
       })
       .catch((err) => {
         toast.error(err?.response?.data?.message);
@@ -346,7 +338,6 @@ const Appstate: React.FC<propstype> = ({ children }: propstype) => {
     )
     .then((res) => {
       toast.success(res?.data?.message);
-      // console.log("add cart", res.data);
     })
     .catch((err) => {
       setCartlength(cartlength => cartlength +1)
@@ -361,7 +352,7 @@ const Appstate: React.FC<propstype> = ({ children }: propstype) => {
     .get(`${url}/cart/allcart`, {withCredentials: true})
     .then((res) => {
       setcarts(res.data.data);
-      console.log("all carts", res.data.data);
+
     })
     .catch((err) => {
       toast.error(err.response.data.message)
@@ -379,7 +370,6 @@ const Appstate: React.FC<propstype> = ({ children }: propstype) => {
       )
       .then((res) => {
         setcarts(res.data.data);
-        console.log("decrease", res.data.data);
       })
       .catch((err) => {
         console.log(err);
@@ -396,7 +386,6 @@ const Appstate: React.FC<propstype> = ({ children }: propstype) => {
       )
       .then((res) => {
         setcarts(res.data.data);
-        console.log("increase", res.data.data);
       })
       .catch((err) => {
         console.log(err);
@@ -413,7 +402,6 @@ const Appstate: React.FC<propstype> = ({ children }: propstype) => {
       )
       .then((res) => {
         setcarts(res.data.data)
-        console.log("remove cart",res.data.data);
       })
       .catch((err) => {
         console.log(err);
@@ -429,7 +417,6 @@ const Appstate: React.FC<propstype> = ({ children }: propstype) => {
      {withCredentials: true}
       )
       .then((res) => {
-        console.log("delete cart", res.data.data);
         fetchcarts()
       })
       .catch((err) => {
@@ -478,8 +465,6 @@ const Appstate: React.FC<propstype> = ({ children }: propstype) => {
         setoldaddress(res?.data?.data);
         toast.success(res.data.message);
         navigate("/checkout");
-        //   setinc(res.data.data)
-        console.log(res.data);
       })
       .catch((err) => {
         toast.error(err?.response?.data?.message);
@@ -500,7 +485,6 @@ const Appstate: React.FC<propstype> = ({ children }: propstype) => {
         }
         setoldaddress(latestAddress);
         navigate("/checkout");
-        console.log(res.data);
       })
       .catch((err) => {
         setoldaddress(null);
@@ -515,7 +499,6 @@ const Appstate: React.FC<propstype> = ({ children }: propstype) => {
       .get(`${url}/payment/userorder`, {withCredentials: true})
       .then((res) => {
         setRecentlyorder(res.data.data[0]);
-        console.log("user recently order", res.data.data);
       })
       .catch((err) => {
         console.log(err);
@@ -527,7 +510,6 @@ const Appstate: React.FC<propstype> = ({ children }: propstype) => {
       .get(`${url}/payment/userorder`,{withCredentials: true})
       .then((res) => {
         setallorders(res.data.data);
-        console.log("user all order", res.data);
       })
       .catch((err) => {
         console.log(err);
